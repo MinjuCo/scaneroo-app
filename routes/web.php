@@ -12,5 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/offline', function() {
+    return view('vendor/laravelpwa/offline');
+})->name('scaneroo.offline');
 Route::get('/{view?}', 'App\Http\Controllers\HomeController@index')->where('view', '(.*)')->name('scaneroo.index');

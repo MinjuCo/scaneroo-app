@@ -18,13 +18,9 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        @laravelPWA
     </head>
     <body class="antialiased">
-        <div id="scaneroo" v-cloak>
-            <div class="container-fluid">
-                <router-view></router-view>
-            </div>
-        </div>
-        <script src="{{ asset(mix('js/app.js')) }}"></script>
+        @yield('content')
     </body>
 </html>

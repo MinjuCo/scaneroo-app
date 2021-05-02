@@ -5,11 +5,11 @@ return [
     'manifest' => [
         'name' => env('APP_NAME', 'Scaneroo'),
         'short_name' => 'Scaneroo',
-        'start_url' => '/',
+        'start_url' => './index.php',
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
         'display' => 'standalone',
-        'orientation'=> 'any',
+        'orientation'=> 'portrait',
         'status_bar'=> 'black',
         'icons' => [
             '72x72' => [

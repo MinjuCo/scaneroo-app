@@ -2,6 +2,9 @@ import Vue from 'vue';
 import axios from 'axios';
 import Routes from './routes';
 import VueRouter from 'vue-router';
+import "./service-worker";
+import Buefy from "buefy";
+import "buefy/dist/buefy.css";
 
 window.Popper = require('popper.js').default;
 
@@ -20,6 +23,7 @@ if (token) {
 }
 
 Vue.use(VueRouter);
+Vue.use(Buefy);
 
 Vue.prototype.$http = axios.create();
 

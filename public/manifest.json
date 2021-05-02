@@ -1,10 +1,6 @@
 {
-    "name": "scaneroo",
-    "short_name": "scaneroo",
-    "theme_color": "#ffbc00",
-    "background_color": "#ffbc00",
-    "display": "standalone",
-    "start_url": "./home",
+    "name": "Scaneroo",
+    "short_name": "Scaneroo",
     "icons": [
       {
         "src": "./img/icons/android-chrome-192x192.png",
@@ -16,5 +12,10 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ]
+    ],
+    "start_url": "/",
+    "scope": ".",
+    "theme_color": "#ffbc00",
+    "background_color": "#ffbc00",
+    "display": "standalone"
   }

@@ -29,6 +29,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.3",
         "buefy": "^0.9.7",
         "register-service-worker": "^1.7.2"
     }

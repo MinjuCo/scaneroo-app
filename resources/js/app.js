@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import "./service-worker";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 window.Popper = require('popper.js').default;
 

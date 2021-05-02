@@ -5,6 +5,14 @@
         <div class="snap-container">
             <button class="snap" v-on:click="capture">SNAP</button>
         </div>
+        <button 
+            v-if="videoDevices.length > 1"
+            class="btn rounded-circle switch-button"
+            @click="switchCamera"
+            :disabled="switchingCamera"
+        >
+            <b-icon pack="fas" icon="sync-alt" />
+        </button>
     </div>
 </template>
 
@@ -22,6 +30,18 @@ export default{
         }
     },
     methods: {
+        async switchCamera() {
+            this.switchingCamera = true;
+            const tracks = this.stream.getVideoTracks();
+            tracks.forEach((track) => {
+                track.stop();
+            });
+
+            await this.startRecording(
+                this.facingMode === "environment" ? "user" : "environment"
+            );
+            this.switchingCamera = false;
+        },
         async startRecording(facingMode) {
             this.facingMode = facingMode;
             let videoPlayer = document.querySelector("video");
@@ -105,6 +125,16 @@ export default{
             .snap {
                 border-radius: 100%;
             }
+        }
+
+        .switch-button {
+            grid-column: bs/es;
+            grid-row: bs/es;
+            z-index: 5;
+            border-radius: 100%;
+            width: 6vh;
+            height: 6vh;
+            font-size: 2em;
         }
     }
 </style>

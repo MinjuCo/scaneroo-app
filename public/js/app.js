@@ -1882,18 +1882,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "camera",
   data: function data() {
     return {
       stream: null,
-      photos: [],
       videoDevices: [],
       facingMode: "environment",
-      switchingCamera: false
+      switchingCamera: false,
+      hideBtns: false,
+      showVideo: true,
+      capturedObject: [],
+      objectScanned: false
     };
   },
   methods: {
+    // Reference: https://github.com/pierresaid/vue-pwa-camera
+
+    /* To switch the camera between front and back **/
     switchCamera: function switchCamera() {
       var _this = this;
 
@@ -1922,6 +1941,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+
+    /* Stream the camera on the video tag **/
     startRecording: function startRecording(facingMode) {
       var _this2 = this;
 
@@ -1931,25 +1952,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.capturedObject = [];
+                _this2.showVideo = true;
+                _this2.objectScanned = false;
                 _this2.facingMode = facingMode;
                 videoPlayer = document.querySelector("video");
-                _context2.next = 4;
+                _context2.next = 7;
                 return navigator.mediaDevices.getUserMedia({
                   video: {
                     facingMode: facingMode
                   }
                 });
 
-              case 4:
+              case 7:
                 _this2.stream = _context2.sent;
                 videoPlayer.srcObject = _this2.stream;
-                _context2.next = 8;
+                _context2.next = 11;
                 return videoPlayer.play();
 
-              case 8:
+              case 11:
                 return _context2.abrupt("return", _context2.sent);
 
-              case 9:
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -1957,76 +1981,137 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    // End reference
+    // Reference: https://github.com/YovelBecker/vue-media-recorder
     capture: function capture() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var videoPlayer, photo, width, height, context;
+        var image, context;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                videoPlayer = document.querySelector("video");
-                photo = _this3.$refs.photo;
-                width = videoPlayer.width;
-                height = videoPlayer.height;
-                photo.width = width;
-                photo.height = height;
-                context = photo.getContext("2d");
-                context.save();
+                _this3.showVideo = false;
+                image = _this3.$refs.canvas;
+                image.width = _this3.$refs.video.videoWidth;
+                image.height = _this3.$refs.video.videoHeight;
+                context = image.getContext("2d");
 
                 if (_this3.facingMode === "user") {
+                  context.translate(image.width, 0);
                   context.scale(-1, 1);
-                  context.drawImage(videoPlayer, width * -1, 0, width, height);
-                } else {
-                  context.drawImage(videoPlayer, 0, 0);
                 }
 
-                context.restore();
+                context.drawImage(_this3.$refs.video, 0, 0);
 
-                _this3.photos.push({
-                  id: 1,
-                  src: photo.toDataURL("image/png")
-                });
+                _this3.stopRecording();
 
                 console.log("Picture taken");
 
-              case 12:
+                _this3.sendToAPI(image);
+
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
-    }
+    },
+    //Stop the video recording
+    stopRecording: function stopRecording() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (_this4.$refs.video && _this4.$refs.video.srcObject) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                return _context4.abrupt("return", _this4.$refs.video.srcObject.getVideoTracks().forEach(function (stream) {
+                  stream.stop();
+                }));
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+
+    /* Send the picture to google api and get the name of the object **/
+    sendToAPI: function sendToAPI(canvas) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var data, http;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                data = new FormData();
+                http = _this5.$http; //Send the canvas as image
+
+                canvas.toBlob(function (blob) {
+                  data.append('picture', blob);
+                  http.post('/api/object/detect-labels', data, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data'
+                    }
+                  }).then(function (response) {
+                    console.log(response.data);
+                    _this5.capturedObject = response.data;
+                    _this5.objectScanned = true;
+                  });
+                });
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    } // End reference
+
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this6 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
       var devices;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              _context4.next = 2;
+              _context6.next = 2;
               return navigator.mediaDevices.enumerateDevices();
 
             case 2:
-              devices = _context4.sent;
-              _this4.videoDevices = devices.filter(function (d) {
+              devices = _context6.sent;
+              _this6.videoDevices = devices.filter(function (d) {
                 return d.kind === "videoinput";
               }); //Start Recording
 
-              _context4.next = 6;
-              return _this4.startRecording(_this4.videoDevices.length === 1 ? "user" : "environment");
+              _context6.next = 6;
+              return _this6.startRecording(_this6.videoDevices.length === 1 ? "user" : "environment");
 
             case 6:
             case "end":
-              return _context4.stop();
+              return _context6.stop();
           }
         }
-      }, _callee4);
+      }, _callee6);
     }))();
   }
 });
@@ -24283,7 +24368,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".camera[data-v-029156d0] {\n  background-color: black;\n  display: grid;\n  width: 100vw;\n  height: 100vh;\n  grid-template-columns: [left] 90vw [bs] 5vw [es] 5vw [right];\n  grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];\n  justify-items: center;\n  overflow: hidden;\n}\n.camera .feed[data-v-029156d0] {\n  height: 100%;\n  box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.25);\n  grid-column: left/right;\n  grid-row: top/end;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  max-width: unset;\n}\n.camera .feed.front[data-v-029156d0] {\n  transform: scaleX(-1);\n}\n.camera .snap-container[data-v-029156d0] {\n  grid-column: left/right;\n  grid-row: middle/bottom;\n  z-index: 5;\n  width: 100vw;\n  height: 5vh;\n  display: flex;\n  justify-content: center;\n}\n.camera .snap-container .snap[data-v-029156d0] {\n  border-radius: 100%;\n}\n.camera .switch-button[data-v-029156d0] {\n  grid-column: bs/es;\n  grid-row: bs/es;\n  z-index: 5;\n  border-radius: 100%;\n  width: 6vh;\n  height: 6vh;\n  font-size: 2em;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".camera[data-v-029156d0] {\n  background-color: black;\n  display: grid;\n  width: 100vw;\n  height: 100vh;\n  grid-template-columns: [left] 5vw [lm] 5vw [le] 80vw [middle] 5vw [rm] 5vw [right];\n  grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];\n  justify-items: center;\n  overflow: hidden;\n}\n.camera .feed[data-v-029156d0], .camera .preview[data-v-029156d0] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  height: 100%;\n  grid-column: left/right;\n  grid-row: top/end;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  max-width: unset;\n}\n.camera .feed.front[data-v-029156d0], .camera .preview.front[data-v-029156d0] {\n  transform: scaleX(-1);\n}\n.camera .snap-container[data-v-029156d0] {\n  grid-column: left/right;\n  grid-row: bs/middle;\n  grid-template-columns: [left] 5vw [lm] 5vw [le] 80vw [middle] 5vw [rm] 5vw [right];\n  grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 5vh [bottom] 5vh [end];\n  z-index: 5;\n  width: 100vw;\n  height: 100%;\n  display: grid;\n}\n.camera .snap-container .object-name[data-v-029156d0] {\n  grid-row: top/es;\n  grid-column: le/middle;\n  margin: auto;\n  width: 300px;\n  height: auto;\n  padding: 1em;\n  text-align: center;\n  box-sizing: border-box;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 15px;\n}\n.camera .snap-container .snap[data-v-029156d0] {\n  border-radius: 100%;\n  grid-column: le;\n  grid-row: middle;\n  margin: auto;\n  width: 5vh;\n  height: 5vh;\n}\n.camera .snap-container .switch-button[data-v-029156d0] {\n  grid-column: middle/rm;\n  grid-row: top/bs;\n  z-index: 5;\n  border-radius: 100%;\n  width: 5vh;\n  height: 5vh;\n  font-size: 1.5em;\n}\n.camera .snap-container .btn.back[data-v-029156d0] {\n  width: 5vh;\n  height: 5vh;\n  grid-column: lm/le;\n  grid-row: top/bs;\n  z-index: 5;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39446,31 +39531,92 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "camera" }, [
     _c("video", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.showVideo,
+          expression: "showVideo"
+        }
+      ],
       ref: "video",
       staticClass: "feed",
       class: _vm.facingMode === "user" ? "front" : "",
       attrs: { autoplay: "" }
     }),
     _vm._v(" "),
-    _c("canvas", { ref: "photo", staticStyle: { display: "none" } }),
+    _c("canvas", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: !_vm.showVideo,
+          expression: "!showVideo"
+        }
+      ],
+      ref: "canvas",
+      staticClass: "preview"
+    }),
     _vm._v(" "),
-    _c("div", { staticClass: "snap-container" }, [
-      _c("button", { staticClass: "snap", on: { click: _vm.capture } }, [
-        _vm._v("SNAP")
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.videoDevices.length > 1
-      ? _c(
-          "button",
-          {
-            staticClass: "btn rounded-circle switch-button",
-            attrs: { disabled: _vm.switchingCamera },
-            on: { click: _vm.switchCamera }
-          },
-          [_c("b-icon", { attrs: { pack: "fas", icon: "sync-alt" } })],
-          1
-        )
+    !_vm.hideBtns
+      ? _c("div", { staticClass: "snap-container" }, [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.objectScanned,
+                  expression: "objectScanned"
+                }
+              ],
+              staticClass: "object-name"
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(this.capturedObject.name) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm.showVideo
+            ? _c(
+                "button",
+                { staticClass: "snap", on: { click: _vm.capture } },
+                [_vm._v("SNAP")]
+              )
+            : _c(
+                "button",
+                {
+                  staticClass: "btn bg-transparent back",
+                  on: {
+                    click: function($event) {
+                      return _vm.startRecording(_vm.facingMode)
+                    }
+                  }
+                },
+                [
+                  _c("b-icon", { attrs: { pack: "fas", icon: "chevron-left" } })
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _vm.videoDevices.length > 1 && _vm.showVideo
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn rounded-circle switch-button",
+                  attrs: { disabled: _vm.switchingCamera },
+                  on: { click: _vm.switchCamera }
+                },
+                [_c("b-icon", { attrs: { pack: "fas", icon: "sync-alt" } })],
+                1
+              )
+            : _vm._e()
+        ])
       : _vm._e()
   ])
 }

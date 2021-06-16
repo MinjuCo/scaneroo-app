@@ -1,3 +1,101 @@
 body {
     margin: 0;
 }
+
+.snap-container{
+    ul{
+        background-color: #ffbc00;
+        height: 48px;
+        padding: 2%;
+        margin: 0%;
+        border-radius: 23px;
+        
+    }
+
+
+    li{
+        display: inline;
+        vertical-align: middle;
+    }
+
+    a{
+        color: #104a56;
+        width: 2px;
+
+
+        img{
+            width: 30px;
+            margin: 10px;
+        }
+    }
+
+    .outline{
+        border-radius: 100%;
+        background-color: #104a56;
+        width: 50px;
+        height: 50px;
+        margin:auto;
+    }
+
+    button{
+        img{
+            width: 30px;
+            margin: 10px;
+        }
+    }
+
+    .snap {
+        border: 8px solid #104a56;  
+        color: white;
+        background: transparent ;
+        width: 70px;
+        height: 70px;
+        padding: 0;
+    }
+
+}
+
+.camera {
+    background-color: black;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: [left] 1.5em [lm] 2.5em [le] calc(
+        100% - 2 * 1.5em - 2 * 2.5em
+      ) [middle] 2.5em [rm] 1.5em [right];
+    grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];
+    justify-items: center;
+    overflow: hidden;
+  
+    .feed {
+      height: 100%;
+      box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.25);
+      grid-column: left/right;
+      grid-row: top / end;
+      user-select: none;
+      max-width: unset;
+  
+      &.front {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+    }
+  
+    .snap-container {
+      grid-column: left / right;
+      grid-row: middle/bottom;
+      z-index: 5;
+      width: 100vw;
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      grid-template-columns: [left] 1.5em [lm] 2.5em [le] calc(
+          100% - 2 * 1.5em - 2 * 2.5em
+        ) [middle] 2.5em [rm]1.5em[right];
+      grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 5vh [bottom] 5vh [end];
+  
+      .snap {
+        border-radius: 100%;
+      }
+    }
+  }

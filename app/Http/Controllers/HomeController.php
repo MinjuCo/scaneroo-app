@@ -10,4 +10,15 @@ class HomeController extends Controller
     {
         return view('layout');
     }
+
+
+    public function favoriet()
+    {
+        return view('favoriet');
+    }
+
+    public function profile()
+    {
+        return view('profile');
+    }
 }

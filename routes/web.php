@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{view?}', 'App\Http\Controllers\HomeController@index')->where('view', '(.*)')->name('scaneroo.index');
+
+

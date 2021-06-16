@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    
     <div class="view">
-        <h1>Favoris</h1>
-        <div  class="favoris">
-            
-            <img class="floatleft" src="img/wortel.svg" alt="">
-            <h3 class="inline">Carrote</h3>
-            <button class="floatright"><img src="img/sound.svg" alt=""></button>
-            <h3  >Wortel</h3>
-            <p >Les chevaux aiment manger "een wortel"?</p>
+      <h1>Thèmes</h1>
+      <a class="themesContainer" href="/nouriture">
+        <div >
+            <h3>Nourriture</h3>
+            <img src="img/kango/kangoo_wortel.svg" alt="">
         </div>
+      </a>
       <div class="snap-container">
         <ul>
           <li>
@@ -18,16 +15,16 @@
           </li>
           <li>
             <a href="/favoriet">
-              <div class="active">
-                <img v-bind:src="'img/Favoriet.svg'" alt="" />
-              </div>
+              <img v-bind:src="'img/Favoriet.svg'" alt="" />
             </a>
           </li>
           <li>
             <a href="/"><img v-bind:src="'img/Camera.svg'" alt="" /></a>
           </li>
           <li>
-            <a href="/theme"><img v-bind:src="'img/themas.svg'" alt="" /></a>
+            <div class="active">
+              <a href="/theme"><img v-bind:src="'img/themas.svg'" alt="" /></a>
+            </div>
           </li>
           <li>
             <a href="#"><img v-bind:src="'img/shop.svg'" alt="" /></a>
@@ -39,19 +36,17 @@
 </template>
 
 <script>
-
+import Camera from "../components/Camera";
 
 export default {
-  el: "app",
-  
+  name: "app",
+  components: {
+    Camera,
+  },
   data() {
-      showIcon: true;
     return {};
   },
-  methods: {
-      toggleIcon:function(){
-      this.showIcon = !this.showIcon;}
-  },
+  methods: {},
 };
 </script>
 

@@ -16,4 +16,14 @@ export default [
         name: 'favoriet',
         component: require('./screens/favoriet').default,
     },
+    {
+        path: '/theme',
+        name: 'theme',
+        component: require('./screens/theme').default,
+    },
+    {
+        path: '/nouriture',
+        name: 'nouriture',
+        component: require('./screens/nouriture').default,
+    },
 ];

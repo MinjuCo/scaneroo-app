@@ -2106,12 +2106,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  el: "app",
+  name: "app",
   data: function data() {
-    showIcon: true;
-
     return {};
   },
   methods: {
@@ -22205,7 +22202,24 @@ var render = function() {
     _c("div", { staticClass: "view" }, [
       _c("h1", [_vm._v("Favoris")]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "favoris" }, [
+        _c("button", { on: { click: _vm.toggleIcon } }, [_vm._v("test")]),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "floatleft",
+          attrs: { src: "img/wortel.svg", alt: "" }
+        }),
+        _vm._v(" "),
+        _c("h3", { staticClass: "inline" }, [_vm._v("Carrote")]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm.showIcon === false ? _c("h3", [_vm._v("Wortel")]) : _vm._e(),
+        _vm._v(" "),
+        _vm.showIcon === false
+          ? _c("p", [_vm._v('Les chevaux aiment manger "een wortel"?')])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "snap-container" }, [
         _c("ul", [
@@ -22250,21 +22264,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "favoris" }, [
-      _c("img", {
-        staticClass: "floatleft",
-        attrs: { src: "img/wortel.svg", alt: "" }
-      }),
-      _vm._v(" "),
-      _c("h3", { staticClass: "inline" }, [_vm._v("Carrote")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "floatright" }, [
-        _c("img", { attrs: { src: "img/sound.svg", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("h3", [_vm._v("Wortel")]),
-      _vm._v(" "),
-      _c("p", [_vm._v('Les chevaux aiment manger "een wortel"?')])
+    return _c("button", { staticClass: "floatright" }, [
+      _c("img", { attrs: { src: "img/sound.svg", alt: "" } })
     ])
   }
 ]

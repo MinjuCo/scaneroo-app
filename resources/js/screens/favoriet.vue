@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    
     <div class="view">
         <h1>Favoris</h1>
         <div  class="favoris">
-            
+            <button v-on:click="toggleIcon">test</button>
             <img class="floatleft" src="img/wortel.svg" alt="">
             <h3 class="inline">Carrote</h3>
             <button class="floatright"><img src="img/sound.svg" alt=""></button>
-            <h3  >Wortel</h3>
-            <p >Les chevaux aiment manger "een wortel"?</p>
+            <h3 v-if="showIcon === false" >Wortel</h3>
+            <p v-if="showIcon === false">Les chevaux aiment manger "een wortel"?</p>
         </div>
       <div class="snap-container">
         <ul>
@@ -42,10 +41,9 @@
 
 
 export default {
-  el: "app",
+  name: "app",
   
   data() {
-      showIcon: true;
     return {};
   },
   methods: {

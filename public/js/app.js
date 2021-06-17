@@ -2955,7 +2955,10 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   path: '/home',
   name: 'home',
-  component: __webpack_require__(/*! ./screens/app */ "./resources/js/screens/app.vue").default
+  component: __webpack_require__(/*! ./screens/app */ "./resources/js/screens/app.vue").default,
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: '/choose-language',
   name: 'language',

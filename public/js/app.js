@@ -2395,6 +2395,22 @@ new vue__WEBPACK_IMPORTED_MODULE_2__.default({
   }
 });
 
+document.querySelector('#test').onclick = function changecontent() {
+  var kader = document.querySelector('#test');
+  var vertaling = document.querySelector('#vertaling');
+  var text = document.querySelector('#text');
+
+  if (text.style.display === "none") {
+    kader.style.height = "18vh";
+    text.style.display = "block";
+    vertaling.style.display = "block";
+  } else {
+    kader.style.height = "4vh";
+    text.style.display = "none";
+    vertaling.style.display = "none";
+  }
+};
+
 /***/ }),
 
 /***/ "./resources/js/routes.js":
@@ -22202,24 +22218,7 @@ var render = function() {
     _c("div", { staticClass: "view" }, [
       _c("h1", [_vm._v("Favoris")]),
       _vm._v(" "),
-      _c("div", { staticClass: "favoris" }, [
-        _c("button", { on: { click: _vm.toggleIcon } }, [_vm._v("test")]),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "floatleft",
-          attrs: { src: "img/wortel.svg", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("h3", { staticClass: "inline" }, [_vm._v("Carrote")]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm.showIcon === false ? _c("h3", [_vm._v("Wortel")]) : _vm._e(),
-        _vm._v(" "),
-        _vm.showIcon === false
-          ? _c("p", [_vm._v('Les chevaux aiment manger "een wortel"?')])
-          : _vm._e()
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "snap-container" }, [
         _c("ul", [
@@ -22264,8 +22263,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "floatright" }, [
-      _c("img", { attrs: { src: "img/sound.svg", alt: "" } })
+    return _c("div", { staticClass: "favoris", attrs: { id: "test" } }, [
+      _c("img", {
+        staticClass: "floatleft",
+        attrs: { src: "img/wortel.svg", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("h3", { staticClass: "inline" }, [_vm._v("Carrote")]),
+      _vm._v(" "),
+      _c("button", { staticClass: "floatright" }, [
+        _c("img", { attrs: { src: "img/sound.svg", alt: "" } })
+      ]),
+      _vm._v(" "),
+      _c("h3", { attrs: { id: "vertaling" } }, [_vm._v("Wortel")]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { dispaly: "none" }, attrs: { id: "text" } }, [
+        _vm._v('Les chevaux aiment manger "een wortel"?')
+      ])
     ])
   }
 ]

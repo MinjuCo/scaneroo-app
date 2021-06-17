@@ -42,3 +42,18 @@ new Vue({
         };
     },
 });
+
+document.querySelector('#test').onclick = function changecontent(){
+    var kader = document.querySelector('#test');
+    var vertaling = document.querySelector('#vertaling');
+    var text = document.querySelector('#text');
+    if (text.style.display === "none") {
+        kader.style.height= "18vh";
+        text.style.display = "block";
+        vertaling.style.display = "block";
+      } else {
+        kader.style.height= "4vh";
+        text.style.display = "none";
+        vertaling.style.display = "none";
+      }
+};

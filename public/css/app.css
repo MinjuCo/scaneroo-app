@@ -104,7 +104,7 @@ body {
   box-shadow: 0px 9px 9px #888888;
   width: 75%;
   border-radius: 10px;
-  height: 18vh;
+  height: 4vh;
   padding: 5%;
 }
 .view .favoris img {
@@ -130,6 +130,12 @@ body {
   font-family: "Comfortaa", cursive;
   width: 64%;
   margin: auto;
+}
+.view .favoris #text {
+  display: none;
+}
+.view .favoris #vertaling {
+  display: none;
 }
 .view .themesContainer {
   grid-column: left/right;

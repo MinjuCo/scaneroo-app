@@ -25,7 +25,7 @@
           
         </li>
         <li>
-          <a href="#"><img v-bind:src="'img/themas.svg'" alt="" /></a>
+          <a href="/theme"><img v-bind:src="'img/themas.svg'" alt="" /></a>
         </li>
         <li>
           <a href="#"><img v-bind:src="'img/shop.svg'" alt="" /></a>

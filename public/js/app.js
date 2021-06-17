@@ -22152,7 +22152,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/theme" } }, [
             _c("img", { attrs: { src: "img/themas.svg", alt: "" } })
           ])
         ]),

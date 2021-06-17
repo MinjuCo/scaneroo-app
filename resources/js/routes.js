@@ -5,9 +5,7 @@ export default [
         path: '/home',
         name: 'home',
         component: require('./screens/app').default,
-        meta: {
-            requiresAuth: true,
-        },
+        
     },
 
     {

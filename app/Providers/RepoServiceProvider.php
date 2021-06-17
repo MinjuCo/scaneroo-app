@@ -10,6 +10,7 @@ class RepoServiceProvider extends ServiceProvider
 {
     protected $repositories = [
         'LanguageRepository',
+        'UserRepository'
     ];
     /**
      * Register services.

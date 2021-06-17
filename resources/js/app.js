@@ -56,8 +56,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    let auth = window.authenticated;
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        let auth = window.authenticated;
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!auth) {
@@ -71,6 +71,17 @@ router.beforeEach((to, from, next) => {
     } else {
       next() // make sure to always call next()!
     }
+
+    if (to.matched.some(record => record.meta.hideForAuth)) {
+        if (auth) {
+            next({ path: '/home' });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+
   })
 
 new Vue({

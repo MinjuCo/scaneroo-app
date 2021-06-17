@@ -11,5 +11,21 @@
     "Parent's email": "L'e-mail de ton parent",
     "What's your name?": "C'est quoi ton nom?",
     "My birthday": "Mon anniversaire",
-    "I'm learning": "J'apprends"
+    "I'm learning": "J'apprends",
+    "Username is already in use.": "Ce nom est déjà pris.",
+    "Please enter a username.": "Entre un pseudo.",
+    "Please enter a password.": "Entre un mot de passe.",
+    "Please enter your name.": "Entre ton nom.",
+    "Please enter your birthday.": "Entre ton anniversaire.",
+    "Please enter a valid email.": "Entre un e-mail valid.",
+    "Username must have 5-15 characters.": "Le pseudo doit avoir 5-15 caractères.",
+    "Please enter valid username. Use only numbers and letters.": "Saisis un pseudo valid. Utilise que des chiffres et des lettres.",
+    "You must choose a password containing at least 6 characters.": "Tu dois choisir un mot de passe contenant au moins 6 caractères.",
+    "Attention": "Attention",
+    "Username and password are incorrect.": "Nom de Kangoo et mot de passe sont incorrects.",
+    "Scan": "Scan",
+    "Favourites": "Favoris",
+    "Themes": "Thèmes",
+    "Profile": "Profil",
+    "Shop": "Shop"
 }

@@ -1,9 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=16a1d70d70facda2672c",
+    "/js/app.js": "/js/app.js?id=02c1eb539f31300b6eba",
     "/service-worker.js": "/service-worker.js?id=9a8b48f01c2cf36935fb",
-    "/css/app.css": "/css/app.css?id=51e9002301976e328a8d",
-    "/img/Kangoo.png": "/img/Kangoo.png?id=b5911b3e268a3be6ea00",
+    "/css/app.css": "/css/app.css?id=4cc76afab6c9aae0271b",
+    "/img/Kangoo.svg": "/img/Kangoo.svg?id=3362774f167cff07b7f5",
     "/img/logo.png": "/img/logo.png?id=2beae6805fa296d24e8e",
-    "/img/logo_full.svg": "/img/logo_full.svg?id=0ef83102ea3edff2d12d",
-    "/img/Kangoo.svg": "/img/Kangoo.svg?id=3362774f167cff07b7f5"
+    "/img/logo_full.svg": "/img/logo_full.svg?id=0ef83102ea3edff2d12d"
 }

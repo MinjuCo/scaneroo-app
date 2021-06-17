@@ -11,5 +11,21 @@
     "Parent's email": "Email of your parent",
     "What's your name?": "What's your name?",
     "My birthday": "My birthday",
-    "I'm learning": "I'm learning"
+    "I'm learning": "I'm learning",
+    "Username is already in use.": "Username is already in use.",
+    "Please enter a username.": "Please enter a username.",
+    "Please enter a password.": "Please enter a password.",
+    "Please enter your name.": "Please enter your name.",
+    "Please enter your birthday.": "Please enter your birthday.",
+    "Please enter a valid email.": "Please enter a valid email.",
+    "Username must have 5-15 characters.": "Username must have 5-15 characters.",
+    "Please enter valid username. Use only numbers and letters.": "Please enter valid username. Use only numbers and letters.",
+    "You must choose a password containing at least 6 characters.": "You must choose a password containing at least 6 characters.",
+    "Attention": "Attention",
+    "Username and password are incorrect.": "Username and password are incorrect.",
+    "Scan": "Scan",
+    "Favourites": "Favourites",
+    "Themes": "Themes",
+    "Profile": "Profile",
+    "Shop": "Shop"
 }

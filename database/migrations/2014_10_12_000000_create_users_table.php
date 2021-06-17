@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('learning_lang', '2')->nullable();
             $table->string('interface_lang', '2');
+            $table->date('birthday');
             $table->tinyInteger('membership')->nullable();
             $table->rememberToken();
             $table->timestamps();

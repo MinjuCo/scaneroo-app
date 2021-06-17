@@ -15531,7 +15531,7 @@ h1 {
   width: 100vw;
   height: 100vh;
   grid-template-columns: [left] 1.5em [le] auto [middle] 1.5em [right];
-  grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];
+  grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 4.3em [bottom] 5vh [end];
   overflow: hidden;
 }
 .screen.screen-language {
@@ -15539,6 +15539,73 @@ h1 {
 }
 .screen.screen-login {
   grid-template-rows: [top] 5vh [bs] 5vh [es] 15vh [mid] auto [middle] 5vh [bottom] 5vh [end];
+}
+.screen .menu {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  grid-column: le/middle;
+  grid-row: middle/bottom;
+  background-color: #ffbc00;
+  border-radius: 23px;
+}
+.screen .menu .nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.screen .menu .nav-item {
+  flex: 1 1 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.screen .menu .nav-link {
+  text-align: center;
+}
+.screen .menu .nav-link.router-link-exact-active {
+  font-weight: bold;
+  color: #104a56 !important;
+  position: absolute;
+  top: -4em;
+  padding: 0;
+}
+.screen .menu .nav-link.router-link-exact-active.snap {
+  top: -6em;
+}
+.screen .menu .nav-link.router-link-exact-active.snap .bg-icon {
+  margin: auto;
+  width: 4.5em;
+  height: 4.5em;
+}
+.screen .menu .nav-link.router-link-exact-active.snap .outline {
+  width: 6em;
+  padding: 0.5em;
+  height: 6em;
+  border-radius: 100%;
+  border: 4px solid #104a56;
+}
+.screen .menu .nav-link.router-link-exact-active .bg-icon {
+  background-color: #104a56;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.screen .menu .nav-link.router-link-exact-active .nav-text {
+  display: block;
+}
+.screen .menu .nav-link .nav-text {
+  position: relative;
+  margin-top: 0.3em;
+  display: none;
+}
+.screen .menu .nav-link img {
+  width: 40px;
 }
 .screen .header {
   position: relative;
@@ -15573,17 +15640,41 @@ h1 {
   width: 100%;
   font-size: inherit;
 }
+.screen .form.form-block {
+  top: -1em;
+  padding: 2em 0;
+  background-color: white;
+  border-radius: 23px;
+}
+.screen .form.form-block .btn-next {
+  margin: 0.5em 0;
+  position: relative;
+}
 .screen .form#v-model-lang {
   margin-top: 6em;
 }
 .screen .form label {
   font-size: 1.5em;
 }
+.screen .form .form-content {
+  position: relative;
+  top: calc(-2em - 15vh / 2);
+}
+.screen .form .avatar {
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+.screen .form .form-group {
+  width: 100%;
+}
 .screen .form .form-control, .screen .form .multiselect__tags {
   border-radius: 23px !important;
   border-color: #C1C1C1;
   padding-left: 1em;
   font-size: 1.3em;
+}
+.screen .form .form-control.is-invalid, .screen .form .multiselect__tags.is-invalid {
+  border-color: red !important;
 }
 .screen .form .multiselect {
   font-size: inherit;
@@ -15697,7 +15788,7 @@ h1 {
   grid-row: top/end;
   display: grid;
   grid-template-columns: [left] 1.5em [lm] 40px [le] calc(100% - 2 * 1.5em - 2 * 40px) [middle] 40px [rm] 1.5em [right];
-  grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];
+  grid-template-rows: [top] 5vh [bs] 5vh [es] 50vh [mid] auto [middle] 5vh [bottom] 5vh [end];
   justify-items: center;
   overflow: hidden;
 }
@@ -15718,7 +15809,7 @@ h1 {
 }
 .screen .camera .snap-container {
   grid-column: left/right;
-  grid-row: bs/middle;
+  grid-row: bs/mid;
   grid-template-columns: [left] 1.5em [lm] 40px [le] calc(100% - 2 * 1.5em - 2 * 40px) [middle] 40px [rm] 1.5em [right];
   grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 5vh [bottom] 5vh [end];
   z-index: 5;
@@ -15726,18 +15817,9 @@ h1 {
   height: 100%;
   display: grid;
 }
-.screen .camera .snap-container .object-name {
+.screen .camera .snap-container .thought {
   grid-row: top/es;
   grid-column: le/middle;
-  margin: auto;
-  width: 300px;
-  height: auto;
-  padding: 1em;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 15px;
 }
 .screen .camera .snap-container .snap {
   border-radius: 100%;
@@ -15756,12 +15838,13 @@ h1 {
   height: 5vh;
   font-size: 1.5em;
 }
-.screen .camera .snap-container .btn.back {
-  width: 5vh;
-  height: 5vh;
+.screen .camera .snap-container .back {
   grid-column: lm/le;
   grid-row: top/bs;
   z-index: 5;
+  color: white;
+  font-size: 2em;
+  border: none;
 }
 
 .thought {

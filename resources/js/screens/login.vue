@@ -3,11 +3,18 @@
         name: 'login',
         data() {
             return {
-               
+               username: '',
+               password: '',
+               error: '',
+               usernameNotValid: false,
+               passwordNotValid: false,
             };
         },
         beforeMount () {
             localStorage.removeItem('userData');
+        },
+        mounted() {
+            //$('#error').modal('show')
         },
         methods: {
             AuthProvider(provider) {
@@ -23,12 +30,55 @@
 
             SocialLogin(provider, response) {
                 this.$http.post('/auth/'+provider, response).then(response => {
-                    
                     if(!response.data.completed) this.$router.push({ name: 'complete-profile', params: { status: 'complete', step: 'user-role', data: response.data } });
+                    if(response.data.completed) this.$router.push({ name: 'home'});
 
                 }).catch(err => {
                     console.log({err:err})
                 })
+            },
+
+            validate(field) {
+                let error = "";
+
+                switch(field) {
+                    case 'username':
+                        if (this.username.trim() == ""){
+                            error = "Please enter a username.";
+                        }
+                        
+                        this.usernameNotValid = (error != '') ? true: false;
+                        break;
+                    case 'password':
+                        if (this.password.trim() == ""){
+                            error = "Please enter a password.";
+                        }
+                        this.passwordNotValid = (error != '') ? true: false;
+                        break;
+                }
+
+                return error;
+            },
+
+            login(){
+                let loginInput = {};
+
+                this.validate('username');
+                this.validate('password');
+
+                if(!this.usernameNotValid && !this.passwordNotValid) {
+                    loginInput['username'] = this.username.trim();
+                    loginInput['password'] = this.password.trim();
+                    this.$http.post('api/login', loginInput).then(response => {
+                        if(response.data == "Logged in"){
+                            window.authenticated = true;
+                            this.$router.push({ name: 'home'});
+                        }else{
+                            this.error = "Username and password are incorrect.";
+                            $('#error').modal('show')
+                        }
+                    });
+                }
             }
         }
     }
@@ -52,16 +102,37 @@
         <div class="icon-lg icon-language grid-mid grid-column-center">
             <img :src="'/img/logo.png'" />
         </div>
+        <div class="modal fade" id="error" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ $t('Attention') }}!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ $t(this.error) }}
+                </div>
+                </div>
+            </div>
+        </div>
         <div class="form grid-column-center" id="v-model-lang">
             <div class="form-group">
                 <label for="username">{{ $t('username') }}:</label>
-                <input type="text" class="form-control" id="username" name="username">
+                <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username">
+                <div v-if="usernameNotValid" class="invalid-feedback">
+                    {{ $t(this.validate('username')) }}
+                </div>
             </div>
             <div class="form-group mb-5">
                 <label for="password">{{ $t('password') }}:</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input @blur="validate('password')" type="password" class="form-control" id="password" v-bind:class="{'is-invalid': passwordNotValid }" v-model="password">
+                <div v-if="passwordNotValid" class="invalid-feedback">
+                    {{ $t(this.validate('password')) }}
+                </div>
             </div>
-            <a class="btn btn-lg btn-block btn-primary">{{ $t('Sign in') }}</a>
+            <a class="btn btn-lg btn-block btn-primary" @click="login()">{{ $t('Sign in') }}</a>
             <a class="btn btn-lg btn-block btn-light" @click="AuthProvider('google')"><img class="icon" src="/img/icon/google.svg" /></a>
             <a class="btn btn-lg btn-block btn-outline-primary" href="/register">{{ $t("I don't have a Kangoo") }}</a>
         </div>

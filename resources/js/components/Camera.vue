@@ -3,19 +3,12 @@
         <video v-show="showVideo" autoplay class="feed" :class="facingMode === 'user' ? 'front': ''" ref="video"></video>
         <canvas v-show="!showVideo" class="preview" ref="canvas" />
         <div v-if="!hideBtns" class="snap-container">
-            <div class="object-name" v-show="objectScanned">
-                {{ this.capturedObject.name }}
-            </div>
-            <button 
-                class="snap" 
-                v-on:click="capture"
-                v-if="showVideo"
-            >SNAP</button>
-            <button v-else
-                class="btn bg-transparent back"
+            <div v-show="objectScanned" class="thought">{{ this.capturedObject.name }}</div>
+            <button v-if="!showVideo"
+                class="bg-transparent back"
                 @click="startRecording(facingMode)"
             >
-                <b-icon pack="fas" icon="chevron-left" />
+                <i class="bi bi-chevron-left"></i>
             </button>
             <button 
                 v-if="videoDevices.length > 1 && showVideo"
@@ -33,6 +26,7 @@
 
 export default{
     name: "camera",
+    props: ['video'],
     data () {
         return {
             stream: null,
@@ -40,10 +34,13 @@ export default{
             facingMode: "environment",
             switchingCamera: false,
             hideBtns: false,
-            showVideo: true,
             capturedObject: [],
             objectScanned: false,
+            showVideo: this.video,
         }
+    },
+    created(){
+        this.$root.$refs.camera = this;
     },
     methods: {
         // Reference: https://github.com/pierresaid/vue-pwa-camera
@@ -64,6 +61,7 @@ export default{
         async startRecording(facingMode) {
             this.capturedObject = [];
             this.showVideo = true;
+            this.$emit('eventname', true);
             this.objectScanned = false;
             this.facingMode = facingMode;
             let videoPlayer = document.querySelector("video");
@@ -78,6 +76,7 @@ export default{
         // Reference: https://github.com/YovelBecker/vue-media-recorder
         async capture() {
             this.showVideo = false;
+            this.$emit('eventname', false);
             let image = this.$refs.canvas;
             image.width = this.$refs.video.videoWidth;
             image.height = this.$refs.video.videoHeight;

@@ -44,7 +44,7 @@ h1 {
     width: 100vw;
     height: 100vh;
     grid-template-columns: [left] $padding-screen [le] auto [middle] $padding-screen [right];
-    grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];
+    grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 4.3em [bottom] 5vh [end];
     overflow: hidden;
 
     &.screen-language {
@@ -53,6 +53,84 @@ h1 {
 
     &.screen-login {
         grid-template-rows: [top] 5vh [bs] 5vh [es] 15vh [mid] auto [middle] 5vh [bottom] 5vh [end];
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        z-index: 1;
+        grid-column: le/middle;
+        grid-row: middle/bottom;
+        background-color: $primary-color;
+        border-radius: 23px;
+
+        .nav{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .nav-item{
+            flex: 1 1 $icon;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-link{
+            text-align: center;
+
+            &.router-link-exact-active {
+                font-weight: bold;
+                color: $secondary-color!important;
+                position: absolute;
+                top: -4em;
+                padding: 0;
+
+                &.snap {
+                    top: -6em;
+                    .bg-icon {
+                        margin: auto;
+                        width: 4.5em;
+                        height: 4.5em;
+                    }
+
+                    .outline {
+                        width: 6em;
+                        padding: 0.5em;
+                        height: 6em;
+                        border-radius: 100%;
+                        border: 4px solid $secondary-color;
+                    }
+                }
+
+                .bg-icon{
+                    background-color: $secondary-color;
+                    width: 4em;
+                    height: 4em;
+                    border-radius: 100%;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .nav-text {
+                    display: block;
+                }
+            }
+
+            .nav-text {
+                position: relative;
+                margin-top: 0.3em;
+                display: none;
+            }
+
+            img {
+                width: $icon;
+            }
+        }
     }
 
     .header {
@@ -93,6 +171,18 @@ h1 {
         width: 100%;
         font-size: inherit;
 
+        &.form-block {
+            top: -1em;
+            padding: 2em 0;
+            background-color: white;
+            border-radius: 23px;
+
+            .btn-next{
+                margin: 0.5em 0;
+                position: relative;
+            }
+        }
+
         &#v-model-lang {
             margin-top: 6em;
         }
@@ -101,11 +191,29 @@ h1 {
             font-size: 1.5em;
         }
 
+        .form-content {
+            position: relative;
+            top: calc(-2em - #{$icon-lg} / 2);
+        }
+
+        .avatar {
+            margin-bottom: 2em;
+            overflow: hidden;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
         .form-control, .multiselect__tags {
             border-radius: 23px!important;
             border-color: $light-gray;
             padding-left: 1em;
             font-size: 1.3em;
+
+            &.is-invalid{
+                border-color: red!important;
+            }
         }
 
         .multiselect {
@@ -248,7 +356,7 @@ h1 {
         grid-row: top / end;
         display: grid;
         grid-template-columns: [left] $padding-screen [lm] $icon [le] calc(100% - 2 * #{$padding-screen} - 2 * #{$icon}) [middle] $icon [rm] $padding-screen [right];
-        grid-template-rows: [top] 5vh [bs] 5vh [es] 80vh [middle] 5vh [bottom] 5vh [end];
+        grid-template-rows: [top] 5vh [bs] 5vh [es] 50vh [mid] auto [middle] 5vh [bottom] 5vh [end];
         justify-items: center;
         overflow: hidden;
     
@@ -268,7 +376,7 @@ h1 {
     
         .snap-container {
             grid-column: left / right;
-            grid-row: bs/middle;
+            grid-row: bs/mid;
             grid-template-columns: [left] $padding-screen [lm] $icon [le] calc(100% - 2 * #{$padding-screen} - 2 * #{$icon}) [middle] $icon [rm] $padding-screen [right];
             grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 5vh [bottom] 5vh [end];
             z-index: 5;
@@ -276,18 +384,9 @@ h1 {
             height: 100%;
             display: grid;
     
-            .object-name {
+            .thought {
                 grid-row: top/es;
                 grid-column: le/middle;
-                margin: auto;
-                width: 300px;
-                height: auto;
-                padding: 1em;
-                text-align: center;
-                box-sizing: border-box;
-                background-color: white;
-                border: 2px solid black;
-                border-radius: 15px;
             }
     
             .snap {
@@ -309,12 +408,13 @@ h1 {
                 font-size: 1.5em;
             }
     
-            .btn.back {
-                width: 5vh;
-                height: 5vh;
+            .back {
                 grid-column: lm/le;
                 grid-row: top/bs;
                 z-index: 5;
+                color: white;
+                font-size: 2em;
+                border: none;
             }
         }
     

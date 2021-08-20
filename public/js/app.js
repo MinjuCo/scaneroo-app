@@ -26510,7 +26510,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form grid-column-center", attrs: { id: "v-model-lang" } },
+      {
+        staticClass: "form grid-column-center",
+        attrs: { id: "v-model-login" }
+      },
       [
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "username" } }, [

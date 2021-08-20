@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <div class="form grid-column-center" id="v-model-lang">
+        <div class="form grid-column-center" id="v-model-login">
             <div class="form-group">
                 <label for="username">{{ $t('username') }}:</label>
                 <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username">

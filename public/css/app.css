@@ -15512,12 +15512,8 @@ body {
 }
 
 h1, h2, h3, label {
-  font-family: "Comic Sans", "Comic Sans MS", cursive;
+  font-family: "Comic Sans", "Comic Sans MS", sans-serif;
   color: #000000 !important;
-}
-
-h1 {
-  font-size: 2.8em !important;
 }
 
 .text-body {
@@ -15653,7 +15649,8 @@ h1 {
   margin-top: 5em;
 }
 .screen .form label {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  font-weight: 500;
 }
 .screen .form .form-content {
   position: relative;
@@ -15721,6 +15718,7 @@ h1 {
   bottom: 0;
   font-size: 2.5em;
   margin-top: 1em;
+  min-width: 195px;
 }
 .screen .grid-column-center {
   grid-column: le/middle;
@@ -15775,11 +15773,8 @@ h1 {
 .screen .btn {
   margin-bottom: 0.5em;
   border-radius: 23px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
-}
-.screen .btn-lg, .screen .btn-group-lg > .btn {
-  min-width: 195px;
 }
 .screen .camera {
   background-color: black;

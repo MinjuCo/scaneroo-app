@@ -24,12 +24,8 @@ body {
 }
 
 h1, h2, h3, label {
-    font-family: 'Comic Sans', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans', 'Comic Sans MS', sans-serif;
     color: #000000!important;
-}
-
-h1 {
-    font-size: 2.8em!important;
 }
 
 .text-body{
@@ -187,7 +183,8 @@ h1 {
         }
 
         label {
-            font-size: 1.5em;
+            font-size: 1.2em;
+            font-weight: 500;
         }
 
         .form-content {
@@ -272,6 +269,7 @@ h1 {
             bottom: 0;
             font-size: 2.5em;
             margin-top: 1em;
+            min-width: 195px;
         }
 
     }
@@ -341,12 +339,8 @@ h1 {
     .btn {
         margin-bottom: 0.5em;
         border-radius: 23px;
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: bold;
-    }
-
-    .btn-lg {
-        min-width: 195px;
     }
 
     .camera {

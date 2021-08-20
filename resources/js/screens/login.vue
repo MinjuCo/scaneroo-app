@@ -132,8 +132,11 @@
                     {{ $t(this.validate('password')) }}
                 </div>
             </div>
-            <a class="btn btn-lg btn-block btn-primary" @click="login()">{{ $t('Sign in') }}</a>
-            <a class="btn btn-lg btn-block btn-light" @click="AuthProvider('google')"><img class="icon" src="/img/icon/google.svg" /></a>
+            <div class="btn-group btn-group-lg w-100" role="group">
+                <a class="btn btn-lg btn-primary" @click="login()">{{ $t('Sign in') }}</a>
+            <a class="btn btn-lg btn-light" @click="AuthProvider('google')"><img class="icon" src="/img/icon/google.svg" /></a>
+            </div>
+            
             <a class="btn btn-lg btn-block btn-outline-primary" href="/register">{{ $t("I don't have a Kangoo") }}</a>
         </div>
     </div>

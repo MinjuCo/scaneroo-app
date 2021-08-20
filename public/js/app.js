@@ -26597,33 +26597,42 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c(
-          "a",
+          "div",
           {
-            staticClass: "btn btn-lg btn-block btn-primary",
-            on: {
-              click: function($event) {
-                return _vm.login()
-              }
-            }
-          },
-          [_vm._v(_vm._s(_vm.$t("Sign in")))]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-lg btn-block btn-light",
-            on: {
-              click: function($event) {
-                return _vm.AuthProvider("google")
-              }
-            }
+            staticClass: "btn-group btn-group-lg w-100",
+            attrs: { role: "group" }
           },
           [
-            _c("img", {
-              staticClass: "icon",
-              attrs: { src: "/img/icon/google.svg" }
-            })
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-lg btn-primary",
+                on: {
+                  click: function($event) {
+                    return _vm.login()
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.$t("Sign in")))]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-lg btn-light",
+                on: {
+                  click: function($event) {
+                    return _vm.AuthProvider("google")
+                  }
+                }
+              },
+              [
+                _c("img", {
+                  staticClass: "icon",
+                  attrs: { src: "/img/icon/google.svg" }
+                })
+              ]
+            )
           ]
         ),
         _vm._v(" "),

@@ -56,4 +56,31 @@ export default [
             hideForAuth: true,
         },
     },
+
+    {
+        path: '/favorite',
+        name: 'favorite',
+        component: require('./screens/favorite').default,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+
+    {
+        path: '/profile',
+        name: 'profile',
+        component: require('./screens/profile').default,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+
+    {
+        path: '/theme',
+        name: 'theme',
+        component: require('./screens/theme').default,
+        meta: {
+            requiresAuth: true,
+        },
+    },
 ];

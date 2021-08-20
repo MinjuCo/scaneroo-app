@@ -215,7 +215,7 @@
                     </router-link>{{ $t("Create your Kangoo") }}
                 </h1>
                 <h1 v-if="this.step == 'fill-info'">
-                    <router-link :to="{ name: 'register', params: {step: 'create-kangoo'}}" :class="'text-body mr-4'">
+                    <router-link :to="{ name: 'register', params: {step: 'create-kangoo'}}" :class="'text-body mr-4 sticky-top'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="58" viewBox="0 0 42 58">
                             <g id="Group_312" data-name="Group 312" transform="translate(-22 -63)">
                                 <rect id="Rectangle_76" data-name="Rectangle 76" width="42" height="58" transform="translate(22 63)" fill="none"/>
@@ -224,8 +224,8 @@
                         </svg>
                     </router-link>
                 </h1>
-                    <div class="thought" v-if="this.step == 'user-role' || this.step == 'fill-info'">{{ (this.step == 'user-role')? $t("Hi, I'm Kangoo! Who are you?") : $t("What's your name?") }}</div>
-                    <img class="kangoo" v-if="this.step == 'user-role' || this.step == 'fill-info'" :src="'/img/Kangoo.svg'" />
+                    <div class="thought" v-bind:class="{'shift-to-top': this.step == 'fill-info'}" v-if="this.step == 'user-role' || this.step == 'fill-info'">{{ (this.step == 'user-role')? $t("Hi, I'm Kangoo! Who are you?") : $t("What's your name?") }}</div>
+                    <img class="kangoo" v-bind:class="{'shift-to-top': this.step == 'fill-info'}" v-if="this.step == 'user-role' || this.step == 'fill-info'" :src="'/img/Kangoo.svg'" />
             </div>
         </div>
         <div v-if="this.step == 'create-kangoo'" class="icon-lg icon-language grid-mid grid-column-center">
@@ -272,7 +272,7 @@
             </div>
             <a @click="setLoginInfo()" class="btn btn-lg btn-primary btn-next"><i class="bi bi-caret-right-fill"></i></a>
         </div>
-        <div v-else-if="this.step == 'fill-info'" class="form form-block grid-column-center shadow">
+        <div v-else-if="this.step == 'fill-info'" class="form form-block grid-column-center shadow shift-to-top">
             <div class="form-content">
                 <div class="icon-lg avatar grid-mid grid-column-center rounded-circle bg-white shadow">
                     <img :src="this.user.avatar" />

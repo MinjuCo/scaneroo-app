@@ -15517,7 +15517,7 @@ h1, h2, h3, label {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 1.6em;
 }
 
 .text-body {
@@ -15532,12 +15532,32 @@ h1 {
   grid-template-columns: [left] 1.5em [le] auto [middle] 1.5em [right];
   grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 4.3em [bottom] 5vh [end];
   overflow: hidden;
+  overflow-y: scroll;
 }
 .screen.screen-language {
   grid-template-rows: [top] 5vh [bs] 5vh [es] 30vh [mid] auto [middle] 5vh [bottom] 5vh [end];
 }
 .screen.screen-login {
   grid-template-rows: [top] 5vh [bs] 5vh [es] 15vh [mid] auto [middle] 5vh [bottom] 5vh [end];
+}
+.screen .top {
+  grid-column: left/right;
+  grid-row: top;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5vh 5vw 0.5em;
+  background-color: white;
+}
+.screen .top h1 {
+  font-size: 2.3em;
+  text-align: center;
+}
+.screen .content {
+  padding: 3em 1.5em 1em;
+  grid-column: left/right;
+  grid-row: es/middle;
+  overflow-y: scroll;
 }
 .screen .menu {
   display: flex;
@@ -15556,7 +15576,7 @@ h1 {
   height: 100%;
 }
 .screen .menu .nav-item {
-  flex: 1 1 40px;
+  flex: 1 1 28px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -15604,7 +15624,7 @@ h1 {
   display: none;
 }
 .screen .menu .nav-link img {
-  width: 40px;
+  width: 28px;
 }
 .screen .header {
   position: relative;
@@ -15625,6 +15645,7 @@ h1 {
   margin: 0 auto;
 }
 .screen .header .bg-yellow .kangoo {
+  position: relative;
   width: 10em;
   margin: 0;
   right: 0;
@@ -15658,7 +15679,7 @@ h1 {
 }
 .screen .form .form-content {
   position: relative;
-  top: calc(-2em - 15vh / 2);
+  margin-top: calc(-2em - 15vh / 2);
 }
 .screen .form .avatar {
   margin-bottom: 2em;
@@ -15718,10 +15739,9 @@ h1 {
   color: inherit;
 }
 .screen .form .btn-next {
-  position: absolute;
   bottom: 0;
   font-size: 2.5em;
-  margin-top: 1em;
+  margin-top: auto;
   min-width: 195px;
   line-height: unset;
 }
@@ -15736,8 +15756,11 @@ h1 {
   height: calc(35vh - 2em);
 }
 .screen .icon {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
+}
+.screen .shift-to-top {
+  margin-top: -3em !important;
 }
 .screen .icon-lg {
   margin: 0 auto;
@@ -15787,7 +15810,7 @@ h1 {
   grid-column: left/right;
   grid-row: top/end;
   display: grid;
-  grid-template-columns: [left] 1.5em [lm] 40px [le] calc(100% - 2 * 1.5em - 2 * 40px) [middle] 40px [rm] 1.5em [right];
+  grid-template-columns: [left] 1.5em [lm] 28px [le] calc(100% - 2 * 1.5em - 2 * 28px) [middle] 28px [rm] 1.5em [right];
   grid-template-rows: [top] 5vh [bs] 5vh [es] 50vh [mid] auto [middle] 5vh [bottom] 5vh [end];
   justify-items: center;
   overflow: hidden;
@@ -15810,7 +15833,7 @@ h1 {
 .screen .camera .snap-container {
   grid-column: left/right;
   grid-row: bs/mid;
-  grid-template-columns: [left] 1.5em [lm] 40px [le] calc(100% - 2 * 1.5em - 2 * 40px) [middle] 40px [rm] 1.5em [right];
+  grid-template-columns: [left] 1.5em [lm] 28px [le] calc(100% - 2 * 1.5em - 2 * 28px) [middle] 28px [rm] 1.5em [right];
   grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 5vh [bottom] 5vh [end];
   z-index: 5;
   width: 100vw;

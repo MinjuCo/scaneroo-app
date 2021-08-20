@@ -117,17 +117,15 @@
                 </div>
             </div>
         </div>
-        <div class="form grid-column-center" id="v-model-login">
+        <div class="form grid-column-center" id="v-model-lang">
             <div class="form-group">
-                <label for="username">{{ $t('username') }}:</label>
-                <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username">
+                <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username" :placeholder="$t('username')">
                 <div v-if="usernameNotValid" class="invalid-feedback">
                     {{ $t(this.validate('username')) }}
                 </div>
             </div>
             <div class="form-group mb-5">
-                <label for="password">{{ $t('password') }}:</label>
-                <input @blur="validate('password')" type="password" class="form-control" id="password" v-bind:class="{'is-invalid': passwordNotValid }" v-model="password">
+                <input @blur="validate('password')" type="password" class="form-control" id="password" v-bind:class="{'is-invalid': passwordNotValid }" v-model="password" :placeholder="$t('password')">
                 <div v-if="passwordNotValid" class="invalid-feedback">
                     {{ $t(this.validate('password')) }}
                 </div>

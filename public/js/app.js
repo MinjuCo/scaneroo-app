@@ -2651,7 +2651,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.learning_lang = this.userData.learning_lang ? this.userData.learning_lang : window.default_locale;
     this.name = this.userData.name ? this.userData.name : '';
-    this.userData['avatar'] = this.userData.avatar ? this.userData.avatar : "http://tinygraphs.com/squares/" + this.username;
+    this.userData['avatar'] = this.userData.avatar ? this.userData.avatar : "https://avatars.dicebear.com/api/bottts/" + this.username + '.svg';
     this.username = this.userData.username ? this.userData.username : '';
     this.birthday = this.userData.birthday ? this.userData.birthday : '';
     this.step = this.$route.params.step ? this.$route.params.step : 'user-role';
@@ -2771,7 +2771,7 @@ __webpack_require__.r(__webpack_exports__);
       this.userData['username'] = this.username.trim();
       this.userData['email'] = this.email.trim();
       this.userData['password'] = this.password.trim();
-      this.userData['avatar'] = "http://tinygraphs.com/squares/" + this.username;
+      this.userData['avatar'] = "https://avatars.dicebear.com/api/bottts/" + this.username + '.svg';
       localStorage.setItem('userData', JSON.stringify(this.userData));
       setTimeout(function () {
         if (!_this3.usernameNotValid && !_this3.passwordNotValid && !_this3.emailNotValid) {
@@ -26510,16 +26510,9 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticClass: "form grid-column-center",
-        attrs: { id: "v-model-login" }
-      },
+      { staticClass: "form grid-column-center", attrs: { id: "v-model-lang" } },
       [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "username" } }, [
-            _vm._v(_vm._s(_vm.$t("username")) + ":")
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -26531,7 +26524,11 @@ var render = function() {
             ],
             staticClass: "form-control",
             class: { "is-invalid": _vm.usernameNotValid },
-            attrs: { type: "text", id: "username" },
+            attrs: {
+              type: "text",
+              id: "username",
+              placeholder: _vm.$t("username")
+            },
             domProps: { value: _vm.username },
             on: {
               blur: function($event) {
@@ -26558,10 +26555,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group mb-5" }, [
-          _c("label", { attrs: { for: "password" } }, [
-            _vm._v(_vm._s(_vm.$t("password")) + ":")
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -26573,7 +26566,11 @@ var render = function() {
             ],
             staticClass: "form-control",
             class: { "is-invalid": _vm.passwordNotValid },
-            attrs: { type: "password", id: "password" },
+            attrs: {
+              type: "password",
+              id: "password",
+              placeholder: _vm.$t("password")
+            },
             domProps: { value: _vm.password },
             on: {
               blur: function($event) {
@@ -26993,10 +26990,6 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "username" } }, [
-                  _vm._v(_vm._s(_vm.$t("username")) + ":")
-                ]),
-                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -27008,7 +27001,11 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.usernameNotValid },
-                  attrs: { type: "text", id: "username" },
+                  attrs: {
+                    type: "text",
+                    id: "username",
+                    placeholder: _vm.$t("username")
+                  },
                   domProps: { value: _vm.username },
                   on: {
                     blur: function($event) {
@@ -27035,10 +27032,6 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "password" } }, [
-                  _vm._v(_vm._s(_vm.$t("password")) + ":")
-                ]),
-                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -27050,7 +27043,11 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.passwordNotValid },
-                  attrs: { type: "password", id: "password" },
+                  attrs: {
+                    type: "password",
+                    id: "password",
+                    placeholder: _vm.$t("password")
+                  },
                   domProps: { value: _vm.password },
                   on: {
                     blur: function($event) {
@@ -27077,10 +27074,6 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "email" } }, [
-                  _vm._v(_vm._s(_vm.$t("Parent's email")) + ":")
-                ]),
-                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -27092,7 +27085,11 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.emailNotValid },
-                  attrs: { type: "email", id: "email" },
+                  attrs: {
+                    type: "email",
+                    id: "email",
+                    placeholder: _vm.$t("Parent's email")
+                  },
                   domProps: { value: _vm.email },
                   on: {
                     blur: function($event) {

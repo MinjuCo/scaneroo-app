@@ -15516,6 +15516,10 @@ h1, h2, h3, label {
   color: #000000 !important;
 }
 
+h1 {
+  font-size: 2.2em;
+}
+
 .text-body {
   color: #000000 !important;
 }
@@ -15646,7 +15650,7 @@ h1, h2, h3, label {
   position: relative;
 }
 .screen .form#v-model-lang {
-  margin-top: 5em;
+  margin-top: 6em;
 }
 .screen .form label {
   font-size: 1.2em;
@@ -15719,6 +15723,7 @@ h1, h2, h3, label {
   font-size: 2.5em;
   margin-top: 1em;
   min-width: 195px;
+  line-height: unset;
 }
 .screen .grid-column-center {
   grid-column: le/middle;
@@ -15775,6 +15780,7 @@ h1, h2, h3, label {
   border-radius: 23px;
   font-size: 1.2em;
   font-weight: bold;
+  line-height: 2.5rem;
 }
 .screen .camera {
   background-color: black;

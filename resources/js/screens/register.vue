@@ -34,7 +34,7 @@
 
             this.learning_lang = (this.userData.learning_lang)?this.userData.learning_lang: window.default_locale;
             this.name = (this.userData.name)? this.userData.name : '';
-            this.userData['avatar'] = (this.userData.avatar)? this.userData.avatar : "http://tinygraphs.com/squares/" + this.username;
+            this.userData['avatar'] = (this.userData.avatar)? this.userData.avatar : "https://avatars.dicebear.com/api/bottts/" + this.username + '.svg';
             this.username = (this.userData.username) ? this.userData.username : '';
             this.birthday = (this.userData.birthday)? this.userData.birthday: '';
             this.step = (this.$route.params.step) ? this.$route.params.step : 'user-role';
@@ -142,7 +142,7 @@
                 this.userData['username'] = this.username.trim();
                 this.userData['email'] = this.email.trim();
                 this.userData['password'] = this.password.trim();
-                this.userData['avatar'] = "http://tinygraphs.com/squares/" + this.username;
+                this.userData['avatar'] = "https://avatars.dicebear.com/api/bottts/" + this.username + '.svg';
                 localStorage.setItem('userData', JSON.stringify(this.userData));
 
                 setTimeout(() => {
@@ -253,22 +253,19 @@
         </div>
         <div v-else-if="this.step == 'create-kangoo'" class="form grid-column-center" id="v-model-lang">
             <div class="form-group">
-                <label for="username">{{ $t('username') }}:</label>
-                <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username">
+                <input @blur="validate('username')" type="text" class="form-control" id="username" v-bind:class="{'is-invalid': usernameNotValid }" v-model="username" :placeholder="$t('username')">
                 <div v-if="usernameNotValid" class="invalid-feedback">
                     {{ $t(this.validate('username')) }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="password">{{ $t('password') }}:</label>
-                <input @blur="validate('password')" type="password" class="form-control" id="password" v-bind:class="{'is-invalid': passwordNotValid }" v-model="password">
+                <input @blur="validate('password')" type="password" class="form-control" id="password" v-bind:class="{'is-invalid': passwordNotValid }" v-model="password" :placeholder="$t('password')">
                 <div v-if="passwordNotValid" class="invalid-feedback">
                     {{ $t(this.validate('password')) }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="email">{{ $t("Parent's email") }}:</label>
-                <input @blur="validate('email')" type="email" class="form-control" id="email" v-bind:class="{'is-invalid': emailNotValid }" v-model="email">
+                <input @blur="validate('email')" type="email" class="form-control" id="email" v-bind:class="{'is-invalid': emailNotValid }" v-model="email" :placeholder="$t('Parent\'s email')">
                 <div v-if="emailNotValid" class="invalid-feedback">
                     {{ $t(this.validate('email')) }}
                 </div>

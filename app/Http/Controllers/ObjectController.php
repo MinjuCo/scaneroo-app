@@ -7,6 +7,7 @@ use Aws\Rekognition\RekognitionClient;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\Feature\Type;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ObjectController extends Controller
 {
@@ -57,7 +58,7 @@ class ObjectController extends Controller
         $object = $response->getLocalizedObjectAnnotations()->offsetGet(0);
         
         return [
-            'name' => $object->getName(),
+            'name' => 'the '.strtolower($object->getName()),
             'boundingPoly' => [
                 [
                     'x' => $object->getBoundingPoly()->getNormalizedVertices()->offsetGet(0)->getX(), 

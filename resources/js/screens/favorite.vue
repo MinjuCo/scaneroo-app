@@ -25,8 +25,8 @@ import FavoriteWord from '../components/FavoriteWord.vue';
                 toggle: false,
                 showVideo: false,
                 list: [
-                    {name: 'Carotte', trans: 'Wortel', exampleSentence: 'Les chevaux aiment manger "een wortel"?'},
-                    {name: 'Livre', trans: 'Boek', exampleSentence: 'J\'adore lire des livres'},
+                    {name: 'la carotte', trans: 'de wortel', exampleSentence: 'Les chevaux aiment manger "een wortel"?'},
+                    {name: 'le livre', trans: 'het boek', exampleSentence: 'J\'adore lire des livres'},
                 ],
             };
         },

@@ -23,11 +23,11 @@ export default {
     },
 
     methods: {
-        playSound(word) {
+        playSound() {
             this.toggle = !this.toggle;
             let key = this.$voiceKey;
             let hl = this.$user.learning_lang;
-            let src = word;
+            let src = this.item.trans;
             
 
             let sound = 'https://api.voicerss.org/?key='+ key +'&hl=' + hl + '&src=' + src;
@@ -49,7 +49,7 @@ export default {
                             <h4 class="word">{{ this.item.name }}</h4>
                             
                         </div>
-                        <div @click="playSound(item.trans)" class="px-3 py-1 ml-3 m-auto"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
+                        <div @click="playSound()" class="px-3 py-1 ml-3 m-auto"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
                         
                     </div>
                     <div class="word-info">

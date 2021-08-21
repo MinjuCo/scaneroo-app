@@ -2164,11 +2164,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    playSound: function playSound(word) {
+    playSound: function playSound() {
       this.toggle = !this.toggle;
       var key = this.$voiceKey;
       var hl = this.$user.learning_lang;
-      var src = word;
+      var src = this.item.trans;
       var sound = 'https://api.voicerss.org/?key=' + key + '&hl=' + hl + '&src=' + src;
       var audio = new Audio(sound);
       audio.play();
@@ -2580,12 +2580,12 @@ __webpack_require__.r(__webpack_exports__);
       toggle: false,
       showVideo: false,
       list: [{
-        name: 'Carotte',
-        trans: 'Wortel',
+        name: 'la carotte',
+        trans: 'de wortel',
         exampleSentence: 'Les chevaux aiment manger "een wortel"?'
       }, {
-        name: 'Livre',
-        trans: 'Boek',
+        name: 'le livre',
+        trans: 'het boek',
         exampleSentence: 'J\'adore lire des livres'
       }]
     };
@@ -25929,7 +25929,7 @@ var render = function() {
               staticClass: "px-3 py-1 ml-3 m-auto",
               on: {
                 click: function($event) {
-                  return _vm.playSound(_vm.item.trans)
+                  return _vm.playSound()
                 }
               }
             },

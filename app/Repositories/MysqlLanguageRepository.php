@@ -24,9 +24,15 @@ class MysqlLanguageRepository implements LanguageRepository{
      * @return array
      */
 
-    public function active() 
+    public function active($type) 
     {
-        return Language::where('active', true)->orderBy('lang_code')->get(['name', 'lang_code', 'icon'])->toArray();
+        $languages = Language::where('active', true);
+        if($type == "interface"){
+            $languages = $languages->orderBy('lang_code')->get(['name', 'lang_code', 'icon']);
+        }else{
+            $languages = $languages->orderBy('trans_code')->get(['name', 'trans_code', 'icon']);
+        }
+        return $languages->toArray() ;
     }
 
     /**

@@ -15,7 +15,7 @@
         },
         methods: {
             loadLanguages() {
-                return this.$http.get('/api/languages')
+                return this.$http.get('/api/languages/interface')
                     .then(response => {
                         this.langOptions = response.data;
                         this.selectedLang = this.langOptions.find(x => x.lang_code == window.default_locale);

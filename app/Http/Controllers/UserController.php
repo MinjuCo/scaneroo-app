@@ -65,7 +65,9 @@ class UserController extends Controller
      */
     public function handleCallback()
     {
-        return view('home');
+        return view('home', [
+            'user' => (auth()->user())?auth()->user():[],
+        ]);
     }
 
     /**
@@ -103,7 +105,9 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return view('home');
+        return view('home', [
+            'user' => (auth()->user())?auth()->user():[],
+        ]);
     }
 
     public function login(Request $request)

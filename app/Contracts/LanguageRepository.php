@@ -18,7 +18,7 @@ interface LanguageRepository
      * @return array
      */
 
-    public function active();
+    public function active($type);
 
     /**
      * Get active languages

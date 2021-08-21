@@ -142,7 +142,7 @@
             },
 
             loadLanguages() {
-                return this.$http.get('/api/languages')
+                return this.$http.get('/api/languages/learning')
                     .then(response => {
                         this.langOptions = response.data;
                         this.selectedLang = this.langOptions.find(x => x.trans_code == this.learning_lang);

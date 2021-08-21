@@ -2343,7 +2343,7 @@ __webpack_require__.r(__webpack_exports__);
     loadLanguages: function loadLanguages() {
       var _this = this;
 
-      return this.$http.get('/api/languages').then(function (response) {
+      return this.$http.get('/api/languages/interface').then(function (response) {
         _this.langOptions = response.data;
         _this.selectedLang = _this.langOptions.find(function (x) {
           return x.lang_code == window.default_locale;
@@ -2517,7 +2517,7 @@ __webpack_require__.r(__webpack_exports__);
     loadLanguages: function loadLanguages() {
       var _this4 = this;
 
-      return this.$http.get('/api/languages').then(function (response) {
+      return this.$http.get('/api/languages/learning').then(function (response) {
         _this4.langOptions = response.data;
         _this4.selectedLang = _this4.langOptions.find(function (x) {
           return x.trans_code == _this4.learning_lang;
@@ -2779,7 +2779,7 @@ __webpack_require__.r(__webpack_exports__);
       birthday: '',
       langOptions: [],
       selectedLang: [],
-      learning_lang: window.default_locale,
+      learning_lang: 'en-gb',
       usernameUnique: ''
     };
   },
@@ -2790,7 +2790,7 @@ __webpack_require__.r(__webpack_exports__);
       this.userData = {};
     }
 
-    this.learning_lang = this.userData.learning_lang ? this.userData.learning_lang : window.default_locale;
+    this.learning_lang = this.userData.learning_lang ? this.userData.learning_lang : 'en-gb';
     this.name = this.userData.name ? this.userData.name : '';
     this.userData['avatar'] = this.userData.avatar ? this.userData.avatar : "https://avatars.dicebear.com/api/bottts/" + this.username + '.svg';
     this.username = this.userData.username ? this.userData.username : '';
@@ -2928,16 +2928,16 @@ __webpack_require__.r(__webpack_exports__);
     storeInfo: function storeInfo() {
       this.userData['name'] = this.name.trim();
       this.userData['birthday'] = this.birthday;
-      this.userData['learning_lang'] = this.selectedLang.lang_code;
+      this.userData['learning_lang'] = this.selectedLang.trans_code;
       localStorage.setItem('userData', JSON.stringify(this.userData));
     },
     loadLanguages: function loadLanguages() {
       var _this4 = this;
 
-      return this.$http.get('/api/languages').then(function (response) {
+      return this.$http.get('/api/languages/learning').then(function (response) {
         _this4.langOptions = response.data;
         _this4.selectedLang = _this4.langOptions.find(function (x) {
-          return x.lang_code == _this4.learning_lang;
+          return x.trans_code == _this4.learning_lang;
         });
       });
     },
@@ -28106,7 +28106,7 @@ var render = function() {
                       attrs: {
                         placeholder: "Select language",
                         label: "name",
-                        "track-by": "lang_code",
+                        "track-by": "trans_code",
                         options: _vm.langOptions,
                         "max-height": 200,
                         "show-labels": false,

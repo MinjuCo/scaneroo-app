@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/languages', [LanguageController::class, 'index']);
+Route::get('/languages/{type}', [LanguageController::class, 'index']);
 Route::get('/check-username/{username}', [UserController::class, 'checkUsername']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);

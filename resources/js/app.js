@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import axios from 'axios';
-import VueAxios from 'vue-axios';
 import VueSocialauth from 'vue-social-auth';
 import Routes from './routes';
 import VueRouter from 'vue-router';
@@ -28,11 +27,10 @@ if (token) {
 
 Vue.use(VueRouter);
 Vue.use(VueI18n);
-//Vue.use(VueAxios, axios);
 Vue.use(VueSocialauth, {
     providers: {
         google: {
-            clientId: window.google_clientId,
+            clientId: process.env.MIX_GOOGLE_CLIENT_ID,
             redirectUri: window.google_redirect
         }
     }
@@ -41,6 +39,8 @@ Vue.use(VueSocialauth, {
 Vue.component('multiselect', Multiselect)
 
 Vue.prototype.$http = axios.create();
+Vue.prototype.$voiceKey = process.env.MIX_VOICE_RSS_KEY;
+Vue.prototype.$user = window.User;
 
 let routerBasePath = '/';
 

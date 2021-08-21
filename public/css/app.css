@@ -15559,6 +15559,30 @@ h1 {
   grid-row: es/middle;
   overflow-y: scroll;
 }
+.screen .content .card.show .word-info {
+  height: 125px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+.screen .content .card .favorite {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+.screen .content .card .word-info {
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  margin-left: calc(1rem + 2 * 28px);
+  height: 0px;
+  opacity: 0;
+}
+.screen .content .card .media .icon-img {
+  width: 56px;
+  height: 56px;
+}
+.screen .content .card .media h4.word {
+  margin-top: 14px;
+}
 .screen .menu {
   display: flex;
   align-items: center;
@@ -15595,7 +15619,6 @@ h1 {
   top: -6em;
 }
 .screen .menu .nav-link.router-link-exact-active.snap .bg-icon {
-  margin: auto;
   width: 4.5em;
   height: 4.5em;
 }
@@ -15614,6 +15637,7 @@ h1 {
   position: relative;
   display: flex;
   justify-content: center;
+  margin: auto;
 }
 .screen .menu .nav-link.router-link-exact-active .nav-text {
   display: block;

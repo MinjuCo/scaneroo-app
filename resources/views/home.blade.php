@@ -12,9 +12,9 @@
     <script>
         window.default_locale = "{{ App::currentLocale() }}";
         window.fallback_locale = "{{ config('app.fallback_locale') }}";
-        window.google_clientId = "{{ config('services.google.client_id') }}";
         window.google_redirect = "{{ config('services.google.redirect') }}";
         window.authenticated = "{{ Auth::check() }}";
+        window.User = @json($user);
     </script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
 

@@ -31,7 +31,10 @@
             SocialLogin(provider, response) {
                 this.$http.post('/auth/'+provider, response).then(response => {
                     if(!response.data.completed) this.$router.push({ name: 'complete-profile', params: { status: 'complete', step: 'user-role', data: response.data } });
-                    if(response.data.completed) this.$router.push({ name: 'home'});
+                    if(response.data.completed){
+                        window.authenticated = true;
+                        this.$router.push({ name: 'home'})
+                    }
 
                 }).catch(err => {
                     console.log({err:err})

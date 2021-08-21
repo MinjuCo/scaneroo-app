@@ -31,8 +31,12 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_id' => env('MIX_GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => config('app.url').'/auth/google/callback',
+    ],
+
+    'voice' => [
+        'key' => env('VOICE_RSS_KEY'),
     ],
 ];

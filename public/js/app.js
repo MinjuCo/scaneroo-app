@@ -2383,7 +2383,7 @@ __webpack_require__.r(__webpack_exports__);
       birthday: '',
       langOptions: [],
       selectedLang: [],
-      learning_lang: window.default_locale,
+      learning_lang: 'en-gb',
       usernameUnique: ''
     };
   },
@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.setItem('userData', JSON.stringify(this.$route.params.data.user));
     }
 
-    this.learning_lang = this.userData.learning_lang ? this.userData.learning_lang : window.default_locale;
+    this.learning_lang = this.userData.learning_lang ? this.userData.learning_lang : 'en-gb';
     this.name = this.userData.name;
     this.username = this.userData.username ? this.userData.username : '';
     this.birthday = this.userData.birthday ? this.userData.birthday : '';
@@ -2511,7 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
     storeInfo: function storeInfo() {
       this.userData['name'] = this.name.trim();
       this.userData['birthday'] = this.birthday;
-      this.userData['learning_lang'] = this.selectedLang.lang_code;
+      this.userData['learning_lang'] = this.selectedLang.trans_code;
       localStorage.setItem('userData', JSON.stringify(this.userData));
     },
     loadLanguages: function loadLanguages() {
@@ -2520,7 +2520,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.$http.get('/api/languages').then(function (response) {
         _this4.langOptions = response.data;
         _this4.selectedLang = _this4.langOptions.find(function (x) {
-          return x.lang_code == _this4.learning_lang;
+          return x.trans_code == _this4.learning_lang;
         });
       });
     },
@@ -26940,7 +26940,7 @@ var render = function() {
                       attrs: {
                         placeholder: "Select language",
                         label: "name",
-                        "track-by": "lang_code",
+                        "track-by": "trans_code",
                         options: _vm.langOptions,
                         "max-height": 200,
                         "show-labels": false,

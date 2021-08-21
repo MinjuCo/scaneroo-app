@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateLanguageLangCode extends Migration
+class AddTransCodeLanguage extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class UpdateLanguageLangCode extends Migration
     public function up()
     {
         Schema::table('languages', function (Blueprint $table) {
-            $table->string('lang_code', 5)->change();
+            $table->string('trans_code', 5)->nullable();
         });
     }
 

@@ -17,7 +17,7 @@
                birthday: '',
                langOptions: [],
                selectedLang: [],
-               learning_lang: window.default_locale,
+               learning_lang: 'en-gb',
                usernameUnique: '',
             };
         },
@@ -28,7 +28,7 @@
                 this.userData = this.$route.params.data.user;
                 localStorage.setItem('userData', JSON.stringify(this.$route.params.data.user));
             }
-            this.learning_lang = (this.userData.learning_lang)?this.userData.learning_lang: window.default_locale;
+            this.learning_lang = (this.userData.learning_lang)?this.userData.learning_lang: 'en-gb';
             this.name = this.userData.name;
             this.username = (this.userData.username) ? this.userData.username : '';
             this.birthday = (this.userData.birthday)? this.userData.birthday: '';
@@ -135,7 +135,7 @@
             storeInfo() {
                 this.userData['name'] = this.name.trim();
                 this.userData['birthday'] = this.birthday;
-                this.userData['learning_lang'] = this.selectedLang.lang_code;
+                this.userData['learning_lang'] = this.selectedLang.trans_code;
 
                 localStorage.setItem('userData', JSON.stringify(this.userData));
                 
@@ -145,7 +145,7 @@
                 return this.$http.get('/api/languages')
                     .then(response => {
                         this.langOptions = response.data;
-                        this.selectedLang = this.langOptions.find(x => x.lang_code == this.learning_lang);
+                        this.selectedLang = this.langOptions.find(x => x.trans_code == this.learning_lang);
                     });
             },
 
@@ -278,7 +278,7 @@
                         </svg>
                         {{ $t("I'm learning") }}:
                     </label>
-                    <multiselect v-model="selectedLang" placeholder="Select language" label="name" track-by="lang_code" :options="langOptions" :max-height="200" :show-labels="false" :searchable="false" :allow-empty="false" @close="storeInfo">
+                    <multiselect v-model="selectedLang" placeholder="Select language" label="name" track-by="trans_code" :options="langOptions" :max-height="200" :show-labels="false" :searchable="false" :allow-empty="false" @close="storeInfo">
                         <template slot="singleLabel" slot-scope="props"><img class="option__image mr-3" :src="props.option.icon" :alt="props.option.icon" width="40px" /><span class="option__desc"><span class="option__title">{{ props.option.name }}</span></span></template>
                         <template slot="option" slot-scope="props"><img class="option__image mr-3" :src="props.option.icon" :alt="props.option.icon" width="40px">
                         <div class="option__desc"><span class="option__title">{{ props.option.name }}</span></div>

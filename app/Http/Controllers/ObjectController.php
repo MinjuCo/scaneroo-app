@@ -7,6 +7,7 @@ use Aws\Rekognition\RekognitionClient;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\Feature\Type;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class ObjectController extends Controller
@@ -56,9 +57,18 @@ class ObjectController extends Controller
         
     
         $object = $response->getLocalizedObjectAnnotations()->offsetGet(0);
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Basic '.config('services.watson.key')
+        ])->post('https://api.eu-de.language-translator.watson.cloud.ibm.com/instances/8150c4d4-1b1c-4653-8549-bae9eb30ce44/v3/translate?version=2018-05-01', [
+            'name' => 'Taylor',
+            "text" => "the ".$object->getName(), 
+            "model_id" => "en-".substr(auth()->user()->learning_lang, 0, 2)
+        ]);
         
         return [
-            'name' => 'the '.strtolower($object->getName()),
+            'name' => $response->json()['translations'][0]['translation'],
             'boundingPoly' => [
                 [
                     'x' => $object->getBoundingPoly()->getNormalizedVertices()->offsetGet(0)->getX(), 

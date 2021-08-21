@@ -39,4 +39,8 @@ return [
     'voice' => [
         'key' => env('VOICE_RSS_KEY'),
     ],
+
+    'watson' => [
+        'key' => env('IBM_WATSON_KEY'),
+    ]
 ];

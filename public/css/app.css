@@ -15532,7 +15532,7 @@ h1 {
   grid-template-columns: [left] 1.5em [le] auto [middle] 1.5em [right];
   grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 4.3em [bottom] 5vh [end];
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .screen.screen-language {
   grid-template-rows: [top] 5vh [bs] 5vh [es] 30vh [mid] auto [middle] 5vh [bottom] 5vh [end];
@@ -15557,12 +15557,12 @@ h1 {
   padding: 3em 1.5em 1em;
   grid-column: left/right;
   grid-row: es/middle;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .screen .content .card.show .word-info {
   height: 125px;
   opacity: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .screen .content .card .favorite {
   display: flex;

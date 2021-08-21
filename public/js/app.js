@@ -1898,6 +1898,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "camera",
   props: ['video'],
@@ -2095,36 +2099,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee5);
       }))();
-    } // End reference
+    },
+    // End reference
+    playSound: function playSound() {
+      var _this6 = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        var key, hl, src, sound, audio;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _this6.toggle = !_this6.toggle;
+                key = _this6.$voiceKey;
+                hl = _this6.$user.learning_lang;
+                src = _this6.capturedObject.name;
+                sound = 'https://api.voicerss.org/?key=' + key + '&hl=' + hl + '&src=' + src;
+                audio = new Audio(sound);
+                audio.play();
+
+              case 7:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    }
   },
   mounted: function mounted() {
-    var _this6 = this;
+    var _this7 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
       var devices;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              _context6.next = 2;
+              _context7.next = 2;
               return navigator.mediaDevices.enumerateDevices();
 
             case 2:
-              devices = _context6.sent;
-              _this6.videoDevices = devices.filter(function (d) {
+              devices = _context7.sent;
+              _this7.videoDevices = devices.filter(function (d) {
                 return d.kind === "videoinput";
               }); //Start Recording
 
-              _context6.next = 6;
-              return _this6.startRecording(_this6.videoDevices.length === 1 ? "user" : "environment");
+              _context7.next = 6;
+              return _this7.startRecording(_this7.videoDevices.length === 1 ? "user" : "environment");
 
             case 6:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }))();
   }
 });
@@ -2731,6 +2760,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'profile',
@@ -2738,7 +2773,9 @@ __webpack_require__.r(__webpack_exports__);
     MainMenu: _components_Main_menu__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
-    return {};
+    return {
+      showVideo: false
+    };
   },
   beforeMount: function beforeMount() {
     localStorage.removeItem('userData');
@@ -25843,7 +25880,31 @@ var render = function() {
               ],
               staticClass: "thought"
             },
-            [_vm._v(_vm._s(this.capturedObject.name))]
+            [
+              _c("div", { staticClass: "ml-auto invisible" }),
+              _vm._v(
+                "\n            " +
+                  _vm._s(this.capturedObject.name) +
+                  "\n            "
+              ),
+              _c(
+                "div",
+                {
+                  staticClass: "px-3 py-1 ml-auto float-right",
+                  on: {
+                    click: function($event) {
+                      return _vm.playSound()
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "icon align-self-start",
+                    attrs: { src: "/img/sound.svg", alt: "Play" }
+                  })
+                ]
+              )
+            ]
           ),
           _vm._v(" "),
           !_vm.showVideo
@@ -27409,7 +27470,15 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "screen" },
-    [_c("main-menu", { attrs: { video: _vm.showVideo } })],
+    [
+      _c("div", { staticClass: "sticky-top top shadow-sm" }, [
+        _c("h1", [_vm._v(_vm._s(_vm.$t("Profile")))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }),
+      _vm._v(" "),
+      _c("main-menu", { attrs: { video: _vm.showVideo } })
+    ],
     1
   )
 }

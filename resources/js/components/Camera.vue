@@ -3,7 +3,11 @@
         <video v-show="showVideo" autoplay class="feed" :class="facingMode === 'user' ? 'front': ''" ref="video"></video>
         <canvas v-show="!showVideo" class="preview" ref="canvas" />
         <div v-if="!hideBtns" class="snap-container">
-            <div v-show="objectScanned" class="thought">{{ this.capturedObject.name }}</div>
+            <div v-show="objectScanned" class="thought">
+                <div class="ml-auto invisible"></div>
+                {{ this.capturedObject.name }}
+                <div @click="playSound()" class="px-3 py-1 ml-auto float-right"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
+            </div>
             <button v-if="!showVideo"
                 class="bg-transparent back"
                 @click="startRecording(facingMode)"
@@ -121,8 +125,21 @@ export default{
                         this.objectScanned = true;
                     });
             });
-        }
+        },
         // End reference
+        async playSound() {
+            this.toggle = !this.toggle;
+            let key = this.$voiceKey;
+            let hl = this.$user.learning_lang;
+            let src = this.capturedObject.name;
+            
+
+            let sound = 'https://api.voicerss.org/?key='+ key +'&hl=' + hl + '&src=' + src;
+
+            let audio = new Audio(sound);
+            audio.play();
+                    
+        }
     },
     async mounted () {
         const devices = await navigator.mediaDevices.enumerateDevices();

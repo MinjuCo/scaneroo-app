@@ -1,20 +1,25 @@
 <template>
     <div class="screen">
         <div class="sticky-top top d-flex align-items-center justify-content-between">
-            <div class="btn icon-md p-0 d-flex flex-row justify-content-center align-items-center back" 
-            :class="{'invisible': !showSettings}"
-            @click="toggleProfile"
+            
+            <router-link 
+                :to="{ name: 'profile'}" event
+                class="btn icon-md p-0 d-flex flex-row justify-content-center align-items-center back"
+                :class="{'invisible': !showSettings}"
+                @click.native.prevent="toggleProfile"
             >
                 <i class="bi bi-chevron-left"></i>
-            </div>
+            </router-link>
             <h1 v-if="showSettings">{{$t('Settings')}}</h1>
             <h1 v-else>{{$t('Profile')}}</h1>
-            <div class="btn p-0 d-flex flex-row justify-content-center align-items-center icon-md rounded-circle text-white bg-secondary"
-            :class="{'invisible': showSettings}"
-            @click="toggleSettings"
+            
+            <router-link 
+                :to="{ name: 'profile-screen', params: {screen: 'settings'}}" 
+                class="btn p-0 d-flex flex-row justify-content-center align-items-center icon-md rounded-circle text-white bg-secondary"
+                :class="{'invisible': showSettings}"
             >
-                <i class="bi bi-pencil-fill"></i>
-            </div>
+                    <i class="bi bi-pencil-fill"></i>
+            </router-link>
         </div>
         <div class="content">
             <div class="icon-lg avatar grid-mid grid-column-center rounded-circle bg-white shadow">
@@ -91,7 +96,7 @@
                             <img :src="badge.picture" :alt="badge.title">
                         </div>
                         <div v-for="index in 12 - userBadges.length" class="achievement-badge" v-bind:key="index + 'e'">
-                            <img src="img/Kangoo_-_gray.svg" alt="Badge">
+                            <img src="/img/Kangoo_-_gray.svg" alt="Badge">
                         </div>
                     </div>
                 </div>
@@ -131,11 +136,17 @@ import MainMenu from '../components/Main-menu';
         beforeMount () {
             localStorage.removeItem('userData');
         },
-        created () {
+        mounted () {
             this.loadLanguages();
             this.name = this.user.name;
             this.birthday = this.user.birthday;
             this.loadUserBadges();
+            this.showSettings = (this.$route.params.screen == "settings") ? true : false;
+        },
+        watch: {
+            '$route'() {
+                this.showSettings = (this.$route.params.screen == "settings") ? true : false;
+            }
         },
         methods: {
             loadLanguages() {
@@ -167,10 +178,11 @@ import MainMenu from '../components/Main-menu';
                         this.birthday = this.user.birthday;
                         this.selectedLearning = this.learningOptions.find(x => x.trans_code == this.user.learning_lang);
                         this.selectedInterface = this.interfaceOptions.find(x => x.lang_code == this.user.interface_lang);
-
+                        this.$router.push('/profile')
                     }
                 }else{
                     this.showSettings = false;
+                    this.$router.push('/profile')
                 }
             },
 
@@ -221,7 +233,7 @@ import MainMenu from '../components/Main-menu';
                     .then(response => {
                         if(response.status == 200){
                             alert(response.data);
-                            window.location.reload();
+                            this.$router.push('/profile/settings')
                         }else{
                             alert(response.data.message);
                         }

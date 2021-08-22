@@ -6,7 +6,7 @@
             <div v-show="objectScanned" class="thought">
                 <div class="ml-auto p-1 invisible"></div>
                 {{ this.capturedObject.name }}
-                <div @click="playSound()" class="px-3 py-1 ml-auto float-right"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
+                <div @click="playSound()" class="btn px-3 py-1 ml-auto float-right"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
             </div>
             <button v-if="!showVideo"
                 class="bg-transparent back"

@@ -76,6 +76,15 @@ export default [
     },
 
     {
+        path: '/profile/:screen',
+        name: 'profile-screen',
+        component: require('./screens/profile').default,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+
+    {
         path: '/theme',
         name: 'theme',
         component: require('./screens/theme').default,

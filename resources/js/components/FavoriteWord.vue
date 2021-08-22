@@ -49,7 +49,7 @@ export default {
                             <h4 class="word">{{ this.item.name }}</h4>
                             
                         </div>
-                        <div @click="playSound()" class="px-3 py-1 ml-3 m-auto"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
+                        <div @click="playSound()" class="btn px-3 py-1 ml-3 m-auto"><img src="/img/sound.svg" class="icon align-self-start" alt="Play"></div>
                         
                     </div>
                     <div class="word-info">

@@ -2859,6 +2859,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'profile',
@@ -2885,11 +2890,17 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     localStorage.removeItem('userData');
   },
-  created: function created() {
+  mounted: function mounted() {
     this.loadLanguages();
     this.name = this.user.name;
     this.birthday = this.user.birthday;
     this.loadUserBadges();
+    this.showSettings = this.$route.params.screen == "settings" ? true : false;
+  },
+  watch: {
+    '$route': function $route() {
+      this.showSettings = this.$route.params.screen == "settings" ? true : false;
+    }
   },
   methods: {
     loadLanguages: function loadLanguages() {
@@ -2929,9 +2940,11 @@ __webpack_require__.r(__webpack_exports__);
           this.selectedInterface = this.interfaceOptions.find(function (x) {
             return x.lang_code == _this3.user.interface_lang;
           });
+          this.$router.push('/profile');
         }
       } else {
         this.showSettings = false;
+        this.$router.push('/profile');
       }
     },
     toggleSettings: function toggleSettings() {
@@ -2971,6 +2984,8 @@ __webpack_require__.r(__webpack_exports__);
       return error;
     },
     update: function update() {
+      var _this4 = this;
+
       this.validate('name');
       this.validate('birthday');
       var data = {
@@ -2984,7 +2999,8 @@ __webpack_require__.r(__webpack_exports__);
         this.$http.post('/api/user/update/' + this.user.id, data).then(function (response) {
           if (response.status == 200) {
             alert(response.data);
-            window.location.reload();
+
+            _this4.$router.push('/profile/settings');
           } else {
             alert(response.data.message);
           }
@@ -3229,6 +3245,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'theme',
@@ -3236,10 +3269,18 @@ __webpack_require__.r(__webpack_exports__);
     MainMenu: _components_Main_menu__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
-    return {};
+    return {
+      showVideo: false,
+      showWordList: false
+    };
   },
   beforeMount: function beforeMount() {
     localStorage.removeItem('userData');
+  },
+  methods: {
+    toggleThemeList: function toggleThemeList() {
+      this.showWordList = false;
+    }
   }
 });
 
@@ -3433,6 +3474,13 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   path: '/profile',
   name: 'profile',
+  component: __webpack_require__(/*! ./screens/profile */ "./resources/js/screens/profile.vue").default,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/profile/:screen',
+  name: 'profile-screen',
   component: __webpack_require__(/*! ./screens/profile */ "./resources/js/screens/profile.vue").default,
   meta: {
     requiresAuth: true
@@ -26062,7 +26110,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "px-3 py-1 ml-auto float-right",
+                  staticClass: "btn px-3 py-1 ml-auto float-right",
                   on: {
                     click: function($event) {
                       return _vm.playSound()
@@ -26159,7 +26207,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "px-3 py-1 ml-3 m-auto",
+              staticClass: "btn px-3 py-1 ml-3 m-auto",
               on: {
                 click: function($event) {
                   return _vm.playSound()
@@ -27651,12 +27699,18 @@ var render = function() {
         },
         [
           _c(
-            "div",
+            "router-link",
             {
               staticClass:
                 "btn icon-md p-0 d-flex flex-row justify-content-center align-items-center back",
               class: { invisible: !_vm.showSettings },
-              on: { click: _vm.toggleProfile }
+              attrs: { to: { name: "profile" }, event: "" },
+              nativeOn: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.toggleProfile($event)
+                }
+              }
             },
             [_c("i", { staticClass: "bi bi-chevron-left" })]
           ),
@@ -27666,16 +27720,19 @@ var render = function() {
             : _c("h1", [_vm._v(_vm._s(_vm.$t("Profile")))]),
           _vm._v(" "),
           _c(
-            "div",
+            "router-link",
             {
               staticClass:
                 "btn p-0 d-flex flex-row justify-content-center align-items-center icon-md rounded-circle text-white bg-secondary",
               class: { invisible: _vm.showSettings },
-              on: { click: _vm.toggleSettings }
+              attrs: {
+                to: { name: "profile-screen", params: { screen: "settings" } }
+              }
             },
             [_c("i", { staticClass: "bi bi-pencil-fill" })]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
@@ -28157,7 +28214,7 @@ var render = function() {
                         [
                           _c("img", {
                             attrs: {
-                              src: "img/Kangoo_-_gray.svg",
+                              src: "/img/Kangoo_-_gray.svg",
                               alt: "Badge"
                             }
                           })
@@ -29013,7 +29070,43 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "screen" },
-    [_c("main-menu", { attrs: { video: _vm.showVideo } })],
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "sticky-top top d-flex align-items-center justify-content-between"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "btn icon-md p-0 d-flex flex-row justify-content-center align-items-center back",
+              class: { invisible: !_vm.showWordList },
+              on: { click: _vm.toggleThemeList }
+            },
+            [_c("i", { staticClass: "bi bi-chevron-left" })]
+          ),
+          _vm._v(" "),
+          _c("h1", [_vm._v(_vm._s(_vm.$t("Themes")))]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "btn p-0 d-flex flex-row justify-content-center align-items-center icon-md rounded-circle text-white bg-secondary",
+              class: { invisible: !_vm.showWordList }
+            },
+            [_c("i", { staticClass: "bi bi-info" })]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }),
+      _vm._v(" "),
+      _c("main-menu", { attrs: { video: _vm.showVideo } })
+    ],
     1
   )
 }

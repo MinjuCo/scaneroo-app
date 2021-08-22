@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\LanguageRepository;
 use App\Contracts\UserRepository;
+use App\Models\Badge;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -167,5 +168,19 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function achieveBadge($id, $badge)
+    {
+        $foundBadge = Badge::where('title', $badge)->first();
+
+        if($foundBadge->users()->where('user_id', $id)->first()){
+            return response()->json('Badge already achieved', 200);
+        }
+
+        User::find($id)->badges()->save($foundBadge);
+
+        return response()->json('Badge achieved', 200);
+            
     }
 }

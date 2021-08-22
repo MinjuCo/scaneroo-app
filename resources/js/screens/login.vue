@@ -33,7 +33,7 @@
                     if(!response.data.completed) this.$router.push({ name: 'complete-profile', params: { status: 'complete', step: 'user-role', data: response.data } });
                     if(response.data.completed){
                         window.authenticated = true;
-                        this.$router.push({ name: 'home'})
+                        window.location.href = "/home";
                     }
 
                 }).catch(err => {

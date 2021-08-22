@@ -123,6 +123,11 @@ export default{
                         console.log(response.data);
                         this.capturedObject = response.data;
                         this.objectScanned = true;
+
+                        http.get('/api/achieve/' + this.$user.id + '/1st scan')
+                        .then(response => {
+                            console.log(response.data);
+                        });
                     });
             });
         },

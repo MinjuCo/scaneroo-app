@@ -2089,6 +2089,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     console.log(response.data);
                     _this5.capturedObject = response.data;
                     _this5.objectScanned = true;
+                    http.get('/api/achieve/' + _this5.$user.id + '/1st scan').then(function (response) {
+                      console.log(response.data);
+                    });
                   });
                 });
 
@@ -2679,10 +2682,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.completed) {
           window.authenticated = true;
-
-          _this.$router.push({
-            name: 'home'
-          });
+          window.location.href = "/home";
         }
       })["catch"](function (err) {
         console.log({

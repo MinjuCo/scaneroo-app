@@ -25,3 +25,4 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/object/detect-labels', [ObjectController::class, 'scanObject']);
 Route::post('/user/update/{id}', [UserController::class, 'update']);
 Route::get('/user/badges/{id}', [UserController::class, 'getBadges']);
+Route::get('/achieve/{id}/{badge}', [UserController::class, 'achieveBadge']);

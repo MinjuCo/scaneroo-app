@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\LanguageRepository;
 use App\Contracts\UserRepository;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -125,5 +127,45 @@ class UserController extends Controller
 
         return response()->json('Login failed');
 
+    }
+
+    public function update(Request $request, $id){
+        if($id != Auth::id()){
+            $data = [
+                'message' => "No access to update this user."
+            ];
+            return response()->json($data,401);
+        }
+
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->birthday = $request->input('birthday');
+        $user->learning_lang = $request->input('learning_lang');
+        $user->interface_lang = $request->input('interface_lang');
+        $this->userRepo->insert($user);
+
+        $languages = app(LanguageRepository::class);
+        $languages = Arr::pluck($languages->active('interface'), 'lang_code');
+        
+        if (! in_array($request->input('interface_lang'), $languages)) {
+            response()->json('Failed to update profile', 404);
+        }
+
+        return response()->json('Profile updated', 200);
+
+    }
+
+    public function getBadges($id){
+        return User::find($id)->badges()->get();
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

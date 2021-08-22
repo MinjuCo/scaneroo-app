@@ -15524,7 +15524,14 @@ h1 {
   color: #000000 !important;
 }
 
-/* Camera component */
+.bg-primary {
+  background-color: #64b9e5 !important;
+}
+
+.bg-secondary {
+  background-color: #104a56 !important;
+}
+
 .screen {
   display: grid;
   width: 100vw;
@@ -15533,6 +15540,7 @@ h1 {
   grid-template-rows: [top] 5vh [bs] 5vh [es] auto [middle] 4.3em [bottom] 5vh [end];
   overflow: hidden;
   overflow-y: auto;
+  /* Camera component */
 }
 .screen.screen-language {
   grid-template-rows: [top] 5vh [bs] 5vh [es] 30vh [mid] auto [middle] 5vh [bottom] 5vh [end];
@@ -15556,8 +15564,12 @@ h1 {
 .screen .content {
   padding: 3em 1.5em 1em;
   grid-column: left/right;
-  grid-row: es/middle;
+  grid-row: es/end;
   overflow-y: auto;
+  padding-bottom: calc(4.3em + 10vh);
+}
+.screen .content .card {
+  border-radius: 15px;
 }
 .screen .content .card.show .word-info {
   height: 125px;
@@ -15582,6 +15594,27 @@ h1 {
 }
 .screen .content .card .media h4.word {
   margin-top: 14px;
+}
+.screen .content .avatar {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border: 3px solid #64b9e5;
+}
+.screen .content .badge-group {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.screen .content .badge-group .achievement-badge {
+  width: 56px;
+  height: 56px;
+  flex: 1 1 33%;
+  margin-bottom: 1em;
+}
+.screen .content .badge-group .achievement-badge img {
+  width: 100%;
+  height: 100%;
 }
 .screen .menu {
   display: flex;
@@ -15783,6 +15816,14 @@ h1 {
   width: 28px;
   height: 28px;
 }
+.screen .icon-md {
+  width: 50.4px;
+  height: 50.4px;
+  margin: 0 !important;
+}
+.screen .back {
+  font-size: 2em !important;
+}
 .screen .shift-to-top {
   margin-top: -3em !important;
 }
@@ -15890,7 +15931,6 @@ h1 {
   grid-row: top/bs;
   z-index: 5;
   color: white;
-  font-size: 2em;
   border: none;
 }
 

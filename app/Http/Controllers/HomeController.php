@@ -10,11 +10,16 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->session()->has('locale')){
-            App::setLocale(session('locale'));
+        if(auth()->user()){
+            App::setLocale(auth()->user()->interface_lang);
         }else{
-            App::setLocale(config('app.locale'));
+            if($request->session()->has('locale')){
+                App::setLocale(session('locale'));
+            }else{
+                App::setLocale(config('app.locale'));
+            }
         }
+        
         
         return view('home', [
             'user' => (auth()->user())?auth()->user():[],

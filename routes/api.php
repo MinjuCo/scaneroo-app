@@ -23,3 +23,5 @@ Route::get('/check-username/{username}', [UserController::class, 'checkUsername'
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/object/detect-labels', [ObjectController::class, 'scanObject']);
+Route::post('/user/update/{id}', [UserController::class, 'update']);
+Route::get('/user/badges/{id}', [UserController::class, 'getBadges']);

@@ -20,5 +20,6 @@ Route::get('/set-language/{locale}', [LanguageController::class, 'setLocale']);
 
 Route::post('/auth/{provider}', [UserController::class, 'socialSignUp']);
 Route::get('/auth/{provider}/callback', [UserController::class, 'handleCallback'])->where('provider', '.*');
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/{view?}', [HomeController::class, 'index'])->where('view', '(.*)')->name('scaneroo.index');

@@ -1,10 +1,14 @@
 {
-    "/js/app.js": "/js/app.js?id=a4f381a6982bce7759c3",
+    "/js/app.js": "/js/app.js?id=8ca647eedeb198050685",
     "/service-worker.js": "/service-worker.js?id=9a8b48f01c2cf36935fb",
-    "/css/app.css": "/css/app.css?id=bf29a4d2ad8ea561c679",
+    "/css/app.css": "/css/app.css?id=4ac063c4ae20eb8fd6dd",
     "/img/Kangoo.svg": "/img/Kangoo.svg?id=3362774f167cff07b7f5",
     "/img/logo.png": "/img/logo.png?id=2beae6805fa296d24e8e",
     "/img/logo_full.svg": "/img/logo_full.svg?id=e11c720171567ae58e95",
     "/img/sound.svg": "/img/sound.svg?id=558941ada3b5ac5fc0eb",
-    "/img/wortel.svg": "/img/wortel.svg?id=8069624940024c9cd81c"
+    "/img/wortel.svg": "/img/wortel.svg?id=8069624940024c9cd81c",
+    "/img/badge.svg": "/img/badge.svg?id=93add2539ee7e9414fee",
+    "/img/Kangoo_-_gray.svg": "/img/Kangoo_-_gray.svg?id=c5548eec43b5852776d1",
+    "/img/Kangoo_-_white.svg": "/img/Kangoo_-_white.svg?id=35c3c8c0343f7568bd89",
+    "/img/badge-first-scan.svg": "/img/badge-first-scan.svg?id=ce2aa8ab326e3579ac36"
 }

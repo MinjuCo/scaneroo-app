@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "round-dreamer-324117",
+  "private_key_id": "e3a9700af1e43b99044a0c77d94d45a37aefed2d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCWr9Fs/eMNSk30\n6QuD8aAAvgkUBezIFLuGh4jRj/DXKj/bVhhYHuR+Je48iRMGzwnJ7G69fHkVWNhT\nsHx15uXsXUAxH+q8FOgJyQIalFlGmRKsH/NPRQ/wtd41QpwObTF9Ajcw5/eetOMb\nFUsUQptn5qp4wnofc1kq31g9hkvYS6DozwBRMhObv3aGM7hPv+otDCbFXsIXUtyU\nmOIqyfusAKDm2JKhUr8IeXDpnJ1vkiq58XDMKcGd0g3n1XOwd3o6q3K685QOdMSh\njjcCOls3ch4K8DDEvTqwXmqKWBD7Hr7V5IXMIcnI45P+/kNDzq0kSHHt3pyemys8\nyES/n44rAgMBAAECggEANRT5euITDlb7EEfaGSBQg4JuM0IFD9SR3Mm47k29Aybs\neMki6UP0rOWSv3twGulrItkph5GmG9mA1zZoGaZ9n16YItYB/ECHHw9SsOdKbb61\nn7HfpbCH9X0zqmJtE/3uPYG+zHkityM0j5FYMepm0Vql+cVUfOjG4/3qmT3KUQaE\n2wZ0DnayLDYQ0uFvRB2HT/s+7TIzDeDziCo1zvFcRaUIoqHg0JxffpYaSLAfU5V9\nRe2hUrKj0YgOsPHz6SG2sRvv0XEoA134liG2y3RrA9Ml0/z3Pk6p+lgzVo7n9eYd\nkER3yxUDqOHss+2I5BOdBC4Xe8xcfWlkYBJebHv2rQKBgQDJqqnchO8kl5IM1x3b\n0164rjFoos0BAPBQnqJqfO2v4QwIerat+Wf6gemXwwwkze8lFr93UbbLvvo1GYw2\neDh53yzqJL9JBx70MaV0k3TdmDvcMQ9S9O9HK4kZE8aTYQPF02DAkUORT7oURc6A\n6OqGqnAenoVJut94UtZaPEufLwKBgQC/SPmwD2gOpeBNKKSLPPiVQr9SQN+a/y0Z\nm2G8ETPd78nwgmpA15uMcd/y+obHjZtn2ILKvcCl3QamZA9biQ3JOHxYJZ7jucwk\nf+sC5pU0hbYrasWGTU7LKU4OS7xCeTW1Qkv4pG3qsrTFvqw/tNT1LBWHImWcyZOB\nLP2D0mchxQKBgCnNj7Jfd/b82FCDEvRrZzofGazX+mjX2fjMOVybkuWfX9AuJ8n+\nZhheb55+1viWG5lzkrLYJG0tpE33gsITv5k7suLCRUiNClSSKfr1SgdZNCdboBKR\nJTx6gMvK9qG8PXz3aRnhwsDPZwImyjyci2jo0Z73OyfibcpSWY6Q6xgPAoGAXH9i\nVjOtAuBNbaJIpxgNsMe9En5SYnYgjfBoO3QqG5kXkpjN3pskGa77N1jUEe01B+tX\nm8hUPyB5Vb6u+nl01CffYRSYF9DBmajNsPJllidOZwJTj9UUVAOePiV7XL2WLhdn\n+00v5b0S00iXrJq6G/B8XINSlZWYIW/rC3KT8m0CgYEAi9deWdSHBW9XkAtZsT0S\n2znusHYar31AvGQKweOnkw0OU3dDnqrHmzJlmqc7gYi6WnPkcoRSzZ7qTqg0ArMT\n+HlyMWse4sxFsfV4ZT8Ez4YbYTDtFYvPcBqByCq/+lP7pTCVHj23Dj9aZjz9grJb\nlFewzzyrR+A5Iqs+yQc2IYE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "scaneroo-vision@round-dreamer-324117.iam.gserviceaccount.com",
+  "client_id": "103310616249816032184",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/scaneroo-vision%40round-dreamer-324117.iam.gserviceaccount.com"
+}
